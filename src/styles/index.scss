@@ -1,0 +1,14 @@
+.index-wrap{
+    .item-wrap{
+        @apply p-2 mt-2 rounded-xl bg-white;
+        .title{
+            // @apply 
+        }
+    }
+    .fixBottom{
+        @apply fixed left-0 bottom-0 w-full h-[100px] bg-gray-300;
+        .button{
+            @apply bg-greenMain text-white
+        }
+    }
+}
