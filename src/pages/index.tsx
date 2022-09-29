@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-09-29 13:15:30
+ * @LastEditTime: 2022-09-29 13:19:49
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -107,10 +107,10 @@ function Main() {
   return (
     <>
       <Banner />
-      <button className={"bg-gray-900 m-10"} onClick={() => requestUserInfo()}>请求获取用户信息</button>
-      <button className={"bg-gray-900 m-10"} onClick={() => requestAddCalander()}>请求添加日历</button>
-      <button className={"bg-gray-900 m-10"} onClick={() => requestPayOrder()}>请求支付订单</button>
-      <button className={"bg-gray-900 m-10"} onClick={() => requestRoute()}>请求路由</button>
+      <button className={"button"} onClick={() => requestUserInfo()}>请求获取用户信息</button>
+      <button className={"button"} onClick={() => requestAddCalander()}>请求添加日历</button>
+      <button className={"button"} onClick={() => requestPayOrder()}>请求支付订单</button>
+      <button className={"button"} onClick={() => requestRoute()}>请求路由</button>
       {/* <About /> */}
       {/* <Features />
       <Roadmap />
