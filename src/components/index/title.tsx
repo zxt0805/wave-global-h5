@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-09-30 11:31:54
+ * @LastEditTime: 2022-09-30 13:55:33
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,29 +16,32 @@ function Banner() {
   return (
     <div className="item-wrap">
       <div>
-        <p className="title">victory<span className="icon">EVT</span></p>
+        <p className="title">
+          victory<span className="icon">EVT</span>
+        </p>
         <p className="time">Starts In: August 28</p>
         <div className="count-down">
-            <div className="time-item">
-                <p className="time">10</p>
-                <p className="unit">Day</p>
-            </div>
-            <div className="time-divide">:</div>
-            <div className="time-item">
-                <p className="time">10</p>
-                <p className="unit">Hrs</p>
-            </div>
-            <div className="time-divide">:</div>
-            <div className="time-item">
+          <div className="time-item">
             <p className="time">10</p>
-                <p className="unit">Min</p>
-            </div>
-            <div className="time-divide">:</div>
-            <div className="time-item">
+            <p className="unit">Day</p>
+          </div>
+          <div className="time-divide">:</div>
+          <div className="time-item">
             <p className="time">10</p>
-                <p className="unit">Sec</p>
-            </div>
+            <p className="unit">Hrs</p>
+          </div>
+          <div className="time-divide">:</div>
+          <div className="time-item">
+            <p className="time">10</p>
+            <p className="unit">Min</p>
+          </div>
+          <div className="time-divide">:</div>
+          <div className="time-item">
+            <p className="time">10</p>
+            <p className="unit">Sec</p>
+          </div>
         </div>
+        {/* div. */}
       </div>
     </div>
   )
