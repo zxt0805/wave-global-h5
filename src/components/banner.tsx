@@ -25,9 +25,5 @@ function Banner() {
     fetchCode()
   }, [])
 
-  return (
-    <div className={'banner container'}>
-      
-    </div>
-  )
+  return <div className={'banner container'}></div>
 }

@@ -23,9 +23,7 @@ export default function NormalLayout(children: React.ReactNode, pageModel: PageM
       </Head>
       {/* <Header /> */}
       {children}
-      <div className={pageModel.name}>
-        {/* <Footer /> */}
-      </div>
+      <div className={pageModel.name}>{/* <Footer /> */}</div>
     </>
   )
 }
