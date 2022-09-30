@@ -2,11 +2,11 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-09-29 17:03:55
+ * @LastEditTime: 2022-09-30 15:55:58
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import Title from 'components/index/title'
+import BaseInfo from 'components/index/baseInfo'
 import FixBottom from 'components/index/fixedBottom'
 
 import NormalLayout from 'components/Layout/normalLayout'
@@ -103,9 +103,14 @@ function postMessage(params, callback) {
 
 function Main() {
   const [saleStatus, setSaleStatus] = useState('saling')
+  const [countDown, setCountDown] = useState(0)
+  // var countDown = 0
 
   useEffect(() => {
     setSaleStatus('saling')
+    // setTimeout(() => {
+    //   setCountDown(1000000)
+    // }, 2000)
   }, [])
   return (
     <div className="index-wrap">
@@ -114,7 +119,7 @@ function Main() {
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5453005f74be2.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667024522&t=261ed7cc222e220fdfff3d24cc118eb7"
         alt=""
       />
-      <Title />
+      <BaseInfo countDown={countDown} />
       {/* <button className={"button"} onClick={() => requestUserInfo()}>请求获取用户信息</button>
       <button className={"button"} onClick={() => requestAddCalander()}>请求添加日历</button>
       <button className={"button"} onClick={() => requestPayOrder()}>请求支付订单</button>
