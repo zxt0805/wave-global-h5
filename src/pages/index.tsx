@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-09-30 15:58:48
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-07 10:42:21
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -40,7 +40,27 @@ function requestAddCalander() {
 
   let params = {
     name: 'requestCalander',
-    data: {},
+    data: {
+      'title': "Wave平台EVT【胜利】开售，快去看看吧！",
+      "description": "Wave平台EVT【胜利】开售，快去看看吧！",
+      "start_time": "1665331200" 
+    },
+  }
+  postMessage(params, function (data) {
+    if (data != null) {
+      console.log(JSON.stringify(data))
+    }
+  })
+}
+
+function checkCalander() {
+  let params = {
+    name: 'checkCalander',
+    data: {
+      'title': "Wave平台EVT【胜利】开售，快去看看吧！",
+      "description": "Wave平台EVT【胜利】开售，快去看看吧！",
+      "start_time": "1665331200" 
+    },
   }
   postMessage(params, function (data) {
     if (data != null) {
@@ -108,6 +128,7 @@ function Main() {
 
   useEffect(() => {
     setSaleStatus('saling')
+    checkCalander()
     // setTimeout(() => {
     //   setCountDown(1000000)
     // }, 2000)
