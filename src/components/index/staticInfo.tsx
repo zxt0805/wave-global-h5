@@ -11,12 +11,13 @@ import React, { useEffect } from 'react'
 export default StaticInfo
 
 function StaticInfo(props) {
+  console.log(props);
   return (
     <div className="staticinfo-wrap">
       <p className="title">Introduction</p>
       <p className="content">{props.collectionInfo.description}</p>
       <p className="title">Specifications</p>
-      <div className="spec-info">
+      {props.collectionInfo.specifications && <div className="spec-info">
         <div className="info-title">
           <p>Contract Address</p>
           <p>Token Standard</p>
@@ -30,7 +31,8 @@ function StaticInfo(props) {
           <p>{props.collectionInfo.specifications.creator_earnings}<img src="/assets/image/icon-ques.png" alt="" className="icon-ques"/></p>
         </div>
         <div className="spec-tip"><img src="/assets/image/icon-point.png" alt="" className="icon-point" />EVT(Encrypted Variable Token) is a new kind of token type that we can use to replace NFT in metaverse and physical world</div>
-      </div>
+      </div>}
+      
       
     </div>
   )
