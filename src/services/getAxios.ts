@@ -8,6 +8,6 @@
  */
 import axios from 'axios'
 
-export function postRequest(url: string,params:{}) {
-  return axios.post(url,params)
+export function postRequest(url: string, params: {}) {
+  return axios.post(url, params)
 }

@@ -16,15 +16,16 @@ type Data = {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  axios.post('https://api.devnet.wavemall.io/api/v5/nft/mystery-box/detail', req.body)
+  axios
+    .post('https://api.devnet.wavemall.io/api/v5/nft/mystery-box/detail', req.body)
     .then(response => {
-      console.log("succes");
-      console.log(response);
+      console.log('succes')
+      console.log(response)
       res.status(200).json(response.data)
     })
     .catch(error => {
-      console.log("error");
-      console.log(error);
+      console.log('error')
+      console.log(error)
       res.status(500)
     })
 }
