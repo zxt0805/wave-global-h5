@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-08 23:13:52
+ * @LastEditTime: 2022-10-08 23:41:35
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -124,29 +124,42 @@ function Main() {
   }
 
   function requestPayOrder() {
-    console.log('call requestPayOrder')
-
-    let params = {
-      name: 'requestPayOrder',
-      data: {
-        collection_id: 1,
-        number: 5,
-        price: '1233434',
-        to_address: 'NEW182XXX',
-      },
-    }
-    postMessage(params, function (data) {
-      if (data != null) {
-        console.log(JSON.stringify(data))
+    if(!isLogin) {
+      let params = {
+        name: 'requestRoute',
+        data: {
+          path: '/login/',
+          params: {},
+        },
       }
-    })
+      postMessage(params, function (data) {
+        if (data != null) {
+          console.log(JSON.stringify(data))
+        }
+      })
+    } else {
+      let params = {
+        name: 'requestPayOrder',
+        data: {
+          collection_id: collectionInfo.id.toString(),
+          price: collectionInfo.sell_price,
+          to_address: collectionInfo.specifications.contract_address,
+        },
+      }
+      postMessage(params, function (data) {
+        if (data != null) {
+          console.log(JSON.stringify(data))
+        }
+      })
+    }
   }
 
-  function requestRoute() {
+
+  function gotoTrade() {
     let params = {
       name: 'requestRoute',
       data: {
-        path: '/detail/',
+        path: '/trade/',
         params: {},
       },
     }
@@ -165,7 +178,6 @@ function Main() {
       },
     }
     postMessage(params, function (data) {
-      console.log(data.result);
       if (data != null) {
         setCollectionInfo(JSON.parse(data.result));
       }
@@ -211,12 +223,11 @@ function Main() {
           <span>License</span>
           <img src="/assets/image/icon_arrow.png" alt="" />
         </div>
-        {isLogin ? <>login</> : <>not login</>}
         <FixBottom
           saleStatus={saleStatus}
           addToCalendar={() => requestAddCalendar()}
           payOrder={() => requestPayOrder()}
-          gotoTrade={() => requestRoute()}
+          gotoTrade={() => gotoTrade()}
         />
       </div>
     )
