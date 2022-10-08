@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-07 10:42:21
+ * @LastEditTime: 2022-10-08 10:27:08
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,11 +35,11 @@ function requestUserInfo() {
   })
 }
 
-function requestAddCalander() {
-  console.log('call requestAddCalander')
+function requestAddCalendar() {
+  console.log('call requestAddCalendar')
 
   let params = {
-    name: 'requestCalander',
+    name: 'requestCalendar',
     data: {
       'title': "Wave平台EVT【胜利】开售，快去看看吧！",
       "description": "Wave平台EVT【胜利】开售，快去看看吧！",
@@ -53,9 +53,9 @@ function requestAddCalander() {
   })
 }
 
-function checkCalander() {
+function checkCalendar() {
   let params = {
-    name: 'checkCalander',
+    name: 'checkCalendar',
     data: {
       'title': "Wave平台EVT【胜利】开售，快去看看吧！",
       "description": "Wave平台EVT【胜利】开售，快去看看吧！",
@@ -128,7 +128,7 @@ function Main() {
 
   useEffect(() => {
     setSaleStatus('saling')
-    checkCalander()
+    checkCalendar()
     // setTimeout(() => {
     //   setCountDown(1000000)
     // }, 2000)
@@ -147,7 +147,7 @@ function Main() {
       <button className={"button"} onClick={() => requestRoute()}>请求路由</button> */}
       <FixBottom
         saleStatus={saleStatus}
-        addToCalendar={() => requestAddCalander()}
+        addToCalendar={() => requestAddCalendar()}
         payOrder={() => requestPayOrder()}
         gotoTrade={() => requestRoute()}
       />
