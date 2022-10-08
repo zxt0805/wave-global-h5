@@ -132,11 +132,11 @@ function Main() {
     let params = {
       collection_id: '4',
     }
-    const fetchCode = async () => {
+    const getNftDetailDate = async () => {
       const res = await postRequest(collectionUrl, params)
       console.log('res:' + JSON.stringify(res.data))
     }
-    fetchCode()
+    getNftDetailDate()
   }, [])
 
   const [saleStatus, setSaleStatus] = useState('saling')
