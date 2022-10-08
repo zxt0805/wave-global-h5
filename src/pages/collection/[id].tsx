@@ -2,8 +2,8 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-08 18:22:19
- * @FilePath: /wave-chinese-website/src/pages/collection/[..id].tsx
+ * @LastEditTime: 2022-10-08 18:26:29
+ * @FilePath: /wave-chinese-website/src/pages/collection/[...id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import BaseInfo from 'components/index/baseInfo'
@@ -11,13 +11,16 @@ import FixBottom from 'components/index/fixedBottom'
 
 import NormalLayout from 'components/Layout/normalLayout'
 import { PageModel } from 'model/navModel'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 export default Home
 
 function Home() {
   let pageModel = new PageModel('北京压缩矩阵科技有限公司', 'WAVE', '')
-
+  const router = useRouter()
+  const { id } = router.query
+  console.log(`id is:${id}`);
   return <>{NormalLayout(Main(), pageModel)}</>
 }
 
@@ -27,6 +30,8 @@ function Main() {
   const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
   const [isLogin, setIsLogin] = useState(false)
+
+  
   // var countDown = 0
 
   useEffect(() => {
