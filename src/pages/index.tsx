@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-08 15:56:25
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-08 10:27:08
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,9 @@ import NormalLayout from 'components/Layout/normalLayout'
 import { PageModel } from 'model/navModel'
 import { useEffect, useState } from 'react'
 
+import axios from 'axios'
+import { postRequest } from '../services/getAxios'
+import { data } from 'autoprefixer'
 export default Home
 
 function Home() {
@@ -23,19 +26,15 @@ function Home() {
   return <>{NormalLayout(Main(), pageModel)}</>
 }
 
-function requestUserInfo() {
-  console.log('call requestUserInfo')
-
-  let params = {
-    name: 'requestUserInfo',
-    data: {},
-  }
-  postMessage(params, function (data) {
-    if (data != null) {
-      console.log(JSON.stringify(data))
-    }
-  })
+let params = {
+  name: 'requestUserInfo',
+  data: {},
 }
+postMessage(params, function (data) {
+  if (data != null) {
+    console.log(JSON.stringify(data))
+  }
+})
 
 function requestAddCalendar() {
   console.log('call requestAddCalendar')
@@ -43,9 +42,11 @@ function requestAddCalendar() {
   let params = {
     name: 'requestCalendar',
     data: {
-      'title': "Wave平台EVT【胜利】开售，快去看看吧！",
-      "description": "Wave平台EVT【胜利】开售，快去看看吧！",
-      "start_time": "1665331200" 
+      collection_id: '1',
+      title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      description: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      start_time: '1665331200',
+      end_time: '16653312300',
     },
   }
   postMessage(params, function (data) {
@@ -59,9 +60,11 @@ function checkCalendar() {
   let params = {
     name: 'checkCalendar',
     data: {
-      'title': "Wave平台EVT【胜利】开售，快去看看吧！",
-      "description": "Wave平台EVT【胜利】开售，快去看看吧！",
-      "start_time": "1665331200" 
+      collection_id: '1',
+      title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      description: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      start_time: '1665331200',
+      end_time: '16653312300',
     },
   }
   postMessage(params, function (data) {
@@ -108,28 +111,44 @@ function requestRoute() {
 }
 
 function postMessage(params, callback) {
-  // @ts-ignore
-  if (window && window.flutter_inappwebview) {
-    console.log('send info android')
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // @ts-ignore
-    window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
-    // @ts-ignore
-  } else if (window && window.webkit) {
-    console.log('send info ios')
-    // @ts-ignore, add ios callback
-    window.webkit.messageHandlers[handler].postMessage(params)
-  } else {
-    console.log(JSON.stringify(params))
+    if (window && window.flutter_inappwebview) {
+      console.log('send info android')
+      // @ts-ignore
+      window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
+      // @ts-ignore
+    } else if (window && window.webkit) {
+      console.log('send info ios')
+      // @ts-ignore, add ios callback
+      window.webkit.messageHandlers[handler].postMessage(params)
+    } else {
+      console.log(JSON.stringify(params))
+    }
   }
 }
 
 function Main() {
+  const collectionUrl = '/api/collection'
+  useEffect(() => {
+    let params = {
+      collection_id: '4',
+    }
+    const fetchCode = async () => {
+      const res = await postRequest(collectionUrl, params)
+      console.log('res:' + JSON.stringify(res.data))
+    }
+    fetchCode()
+  }, [])
+
   const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
+  const [isLogin, setIsLogin] = useState(false)
   // var countDown = 0
 
   useEffect(() => {
     setSaleStatus('saling')
+    requestUserInfo()
     checkCalendar()
     // setTimeout(() => {
     //   setCountDown(1000000)
@@ -149,6 +168,7 @@ function Main() {
         <span>License</span>
         <img src="/assets/image/icon_arrow.png" alt="" />
       </div>
+      {isLogin ? <>login</> : <>not login</>}
       {/* <button className={"button"} onClick={() => requestUserInfo()}>请求获取用户信息</button>
       <button className={"button"} onClick={() => requestAddCalander()}>请求添加日历</button>
       <button className={"button"} onClick={() => requestPayOrder()}>请求支付订单</button>
@@ -172,4 +192,115 @@ function Main() {
       <Faq />
       <Down /> */
   )
+
+  function requestUserInfo() {
+    console.log('call requestUserInfo')
+
+    let params = {
+      name: 'requestUserInfo',
+      data: {},
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        var info = data
+        if (info.error_code == 1) {
+          setIsLogin(true)
+        } else if (info.error_code == 2) {
+          setIsLogin(false)
+        } else {
+          // show error message
+        }
+      }
+    })
+  }
+
+  function requestAddCalendar() {
+    console.log('call requestAddCalendar')
+
+    let params = {
+      name: 'requestCalendar',
+      data: {
+        title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+        description: 'Wave平台EVT【胜利】开售，快去看看吧！',
+        start_time: '1665331200',
+        end_time: '1665332200',
+      },
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        console.log(JSON.stringify(data))
+      }
+    })
+  }
+
+  function checkCalendar() {
+    let params = {
+      name: 'checkCalendar',
+      data: {
+        title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+        description: 'Wave平台EVT【胜利】开售，快去看看吧！',
+        start_time: '1665331200',
+        end_time: '1665332200',
+      },
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        console.log(JSON.stringify(data))
+      }
+    })
+  }
+
+  function requestPayOrder() {
+    console.log('call requestPayOrder')
+
+    let params = {
+      name: 'requestPayOrder',
+      data: {
+        collection_id: 1,
+        number: 5,
+        price: '1233434',
+        to_address: 'NEW182XXX',
+      },
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        console.log(JSON.stringify(data))
+      }
+    })
+  }
+
+  function requestRoute() {
+    console.log('call requestRoute')
+
+    let params = {
+      name: 'requestRoute',
+      data: {
+        path: '/detail/',
+        params: {},
+      },
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        console.log(JSON.stringify(data))
+      }
+    })
+  }
+
+  function postMessage(params, callback) {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      // @ts-ignore
+      if (window && window.flutter_inappwebview) {
+        console.log('send info android')
+        // @ts-ignore
+        window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
+        // @ts-ignore
+      } else if (window && window.webkit) {
+        console.log('send info ios')
+        // @ts-ignore, add ios callback
+        window.webkit.messageHandlers[handler].postMessage(params)
+      } else {
+        console.log(JSON.stringify(params))
+      }
+    }
+  }
 }
