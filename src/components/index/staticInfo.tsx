@@ -2,38 +2,40 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-08 21:12:08
+ * @LastEditTime: 2022-10-08 21:45:50
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-08 20:54:29
+ * @FilePath: /wave-chinese-website/src/components/index/staticInfo.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 export default StaticInfo
 
 function StaticInfo(props) {
-  useEffect(() => {
-  }, [])
-
   return (
     <div className="staticinfo-wrap">
       <p className="title">Introduction</p>
       <div className="content-wrap">
-        <p className="content">Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2</p>
+        <p className="content">{props.collectionInfo.description}</p>
         <p className="more">More</p>
       </div>
       <p className="title">Specifications</p>
       <div className="spec-info">
+        <div className="flex">
         <div className="info-title">
-          <p>Contract Address</p>
-          <p>Token Standard</p>
-          <p>Blockchain</p>
-          <p>Blockchain</p>
+          <p className="item">Contract Address</p>
+          <p className="item">Token Standard</p>
+          <p className="item">Blockchain</p>
+          <p className="item">Creator Earnings</p>
         </div>
         <div className="info-content">
-          <p>NEW844...saQM<img src="/assets/image/icon-copy.png" alt="" className="icon-copy"/></p>
-          <p>EVT (NRC-53)</p>
-          <p>Newton</p>
-          <p>5%<img src="/assets/image/icon-ques.png" alt="" className="icon-ques"/></p>
+          <p className="item"><p>{props.collectionInfo.specifications.contract_address}</p><img src="/assets/image/icon-copy.png" alt="" className="icon-copy"/></p>
+          <p className="item">{props.collectionInfo.specifications.token_standard}</p>
+          <p className="item">{props.collectionInfo.specifications.block_chain}</p>
+          <p className="item">{props.collectionInfo.specifications.creator_earnings}<img src="/assets/image/icon-ques.png" alt="" className="icon-ques"/></p>
+        </div>
         </div>
         <div className="spec-tip">
           <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
@@ -44,4 +46,5 @@ function StaticInfo(props) {
       
     </div>
   )
+
 }
