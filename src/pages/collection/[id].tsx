@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-08 20:32:23
+ * @LastEditTime: 2022-10-08 20:55:30
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,55 +27,45 @@ function Home() {
 
 
 function Main() {
-  const collectionUrl = '/api/collection'
   const router = useRouter()
   const { id } = router.query
   
-  useEffect(() => {
-    let params = {
-      collection_id: id,
-    }
-    const fetchCode = async () => {
-      const res = await postRequest(collectionUrl, params)
-      console.log('res:' + JSON.stringify(res.data))
-    }
-    fetchCode()
-  }, [])
-
   const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
   const [isLogin, setIsLogin] = useState(false)
-  // var countDown = 0
+  const [collectionInfo, setCollectionInfo] = useState()
+
+  const collectionUrl = '/api/collection'
 
   useEffect(() => {
     setSaleStatus('saling')
     requestUserInfo()
+    if(id != undefined) {
+      fetchCollectionInfo()
+    }
     checkCalendar()
-  }, [0])
+  }, [isLogin, id])
 
-  return (
-    <div className="index-wrap">
-      <HeadImg></HeadImg>
-      <BaseInfo countDown={countDown} />
-      <StaticInfo></StaticInfo>
-      <div className="staticinfo-wrap"><img
-          className="rounded-xl"
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5453005f74be2.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667024522&t=261ed7cc222e220fdfff3d24cc118eb7"
-          alt=""
-        /></div>
-      <div className="staticinfo-wrap license">
-        <span>License</span>
-        <img src="/assets/image/icon_arrow.png" alt="" />
-      </div>
-      {isLogin ? <>login</> : <>not login</>}
-      <FixBottom
-        saleStatus={saleStatus}
-        addToCalendar={() => requestAddCalendar()}
-        payOrder={() => requestPayOrder()}
-        gotoTrade={() => requestRoute()}
-      />
-    </div>
-  )
+
+  function fetchCollectionInfo() {
+    if(isLogin) {
+      requestCollectionInfo(id)
+    } else {
+      // 
+      let params = {
+        collection_id: id.toString(),
+      }
+      const getCollectionInfo = async () => {
+        const res = await postRequest(collectionUrl, params)
+        if(res.status == 200 && res.data.error_code == 1) {
+          setCollectionInfo(res.data.result)
+        }
+      }
+      getCollectionInfo()
+    }
+  }
+
+
 
   function requestUserInfo() {
     console.log('call requestUserInfo')
@@ -153,8 +143,6 @@ function Main() {
   }
 
   function requestRoute() {
-    console.log('call requestRoute')
-
     let params = {
       name: 'requestRoute',
       data: {
@@ -165,6 +153,21 @@ function Main() {
     postMessage(params, function (data) {
       if (data != null) {
         console.log(JSON.stringify(data))
+      }
+    })
+  }
+
+  function requestCollectionInfo(id) {
+    let params = {
+      name: 'requestCollection',
+      data: {
+        'collection_id': id
+      },
+    }
+    postMessage(params, function (data) {
+      if (data != null) {
+        console.log(JSON.stringify(data))
+        setCollectionInfo(data);
       }
     })
   }
@@ -186,4 +189,35 @@ function Main() {
       }
     }
   }
+  
+  if(collectionInfo == null) {
+    return <>hello</>
+  } else {
+    console.log(collectionInfo);
+    return (
+      <div className="index-wrap">
+        <HeadImg collectionInfo={collectionInfo}></HeadImg>
+        <BaseInfo countDown={countDown} />
+        <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
+        <div className="staticinfo-wrap"><img
+            className="rounded-xl"
+            src={collectionInfo.banner}
+            alt=""
+          /></div>
+        <div className="staticinfo-wrap license">
+          <span>License</span>
+          <img src="/assets/image/icon_arrow.png" alt="" />
+        </div>
+        {isLogin ? <>login</> : <>not login</>}
+        <FixBottom
+          saleStatus={saleStatus}
+          addToCalendar={() => requestAddCalendar()}
+          payOrder={() => requestPayOrder()}
+          gotoTrade={() => requestRoute()}
+        />
+      </div>
+    )
+  }
+
+  
 }
