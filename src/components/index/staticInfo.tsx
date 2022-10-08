@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-08 15:37:37
+ * @LastEditTime: 2022-10-08 21:12:08
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,7 +17,10 @@ function StaticInfo(props) {
   return (
     <div className="staticinfo-wrap">
       <p className="title">Introduction</p>
-      <p className="content">Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2</p>
+      <div className="content-wrap">
+        <p className="content">Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2Remembering 1950 is a documentary film about Volunteer Army. The film visited more than 2</p>
+        <p className="more">More</p>
+      </div>
       <p className="title">Specifications</p>
       <div className="spec-info">
         <div className="info-title">
@@ -32,7 +35,11 @@ function StaticInfo(props) {
           <p>Newton</p>
           <p>5%<img src="/assets/image/icon-ques.png" alt="" className="icon-ques"/></p>
         </div>
-        <div className="spec-tip"><img src="/assets/image/icon-point.png" alt="" className="icon-point" />EVT(Encrypted Variable Token) is a new kind of token type that we can use to replace NFT in metaverse and physical world</div>
+        <div className="spec-tip">
+          <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
+          <p>EVT(Encrypted Variable Token) is a new kind of token type that we can use to replace NFT in metaverse and physical world</p>
+          <p className="more">More</p>
+        </div>
       </div>
       
     </div>

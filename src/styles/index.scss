@@ -52,9 +52,11 @@
     .title{
         @apply text-lg text-gray333 font-bold mb-4;
     }
-    .content{
-        @apply text-sm text-gray666 mb-7;
-        
+    .content-wrap{
+        @apply text-sm  mb-7;
+      .content{
+          @apply  text-gray666 h-10 line-clamp-2;
+      }
     }
     .spec-info{
         @apply text-sm;
@@ -81,6 +83,9 @@
             .icon-point{
                 @apply w-[0.375rem] h-[0.375rem] absolute left-0 top-1;
             }
+            p{
+              @apply h-8 line-clamp-2 mb-0;
+            }
         }
     }
   }
@@ -95,5 +100,8 @@
     .button {
       @apply rounded-lg bg-gray333 px-4 py-[0.65rem] text-lg text-white;
     }
+  }
+  .more{
+    @apply text-gray333;
   }
 }
