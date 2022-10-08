@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-08 20:58:25
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-08 21:43:13
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react'
 
 import { postRequest } from '../../services/getAxios'
 import { useRouter } from 'next/router'
-
+import { Skeleton, Space } from 'antd';
 export default Home
 
 function Home() {
@@ -29,7 +29,7 @@ function Home() {
 function Main() {
   const router = useRouter()
   const { id } = router.query
-  
+
   const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
   const [isLogin, setIsLogin] = useState(false)
@@ -40,7 +40,7 @@ function Main() {
   useEffect(() => {
     setSaleStatus('saling')
     requestUserInfo()
-    if(id != undefined) {
+    if (id != undefined) {
       fetchCollectionInfo()
     }
     checkCalendar()
@@ -48,7 +48,7 @@ function Main() {
 
 
   function fetchCollectionInfo() {
-    if(isLogin) {
+    if (isLogin) {
       requestCollectionInfo(id)
     } else {
       // 
@@ -57,7 +57,7 @@ function Main() {
       }
       const getCollectionInfo = async () => {
         const res = await postRequest(collectionUrl, params)
-        if(res.status == 200 && res.data.error_code == 1) {
+        if (res.status == 200 && res.data.error_code == 1) {
           setCollectionInfo(res.data.result)
         }
       }
@@ -189,9 +189,13 @@ function Main() {
       }
     }
   }
-  
-  if(collectionInfo == null) {
-    return <>hello</>
+
+  if (collectionInfo == null) {
+    return (
+      <div className='skeleton-wap'>
+        <Skeleton.Image active />
+        <Skeleton active paragraph={{ rows: 20 }} />
+      </div>)
   } else {
     console.log(collectionInfo);
     return (
@@ -200,10 +204,10 @@ function Main() {
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         <div className="staticinfo-wrap"><img
-            className="rounded-xl"
-            src={collectionInfo.banner}
-            alt=""
-          /></div>
+          className="rounded-xl"
+          src={collectionInfo.banner}
+          alt=""
+        /></div>
         <div className="staticinfo-wrap license">
           <span>License</span>
           <img src="/assets/image/icon_arrow.png" alt="" />
@@ -219,5 +223,5 @@ function Main() {
     )
   }
 
-  
+
 }

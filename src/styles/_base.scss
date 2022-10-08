@@ -55,3 +55,10 @@ h2 {
 .container {
   @apply mx-auto max-w-[1200px];
 }
+
+.skeleton-wap {
+  @apply p-4;
+  .ant-skeleton-element  {
+    @apply pb-4;
+  }
+}
