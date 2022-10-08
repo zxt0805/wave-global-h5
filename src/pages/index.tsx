@@ -1,12 +1,14 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-08 10:27:08
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-08 15:56:25
  * @FilePath: /wave-chinese-website/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
+import HeadImg from 'components/index/headImg'
 import BaseInfo from 'components/index/baseInfo'
+import StaticInfo from 'components/index/staticInfo'
 import FixBottom from 'components/index/fixedBottom'
 
 import NormalLayout from 'components/Layout/normalLayout'
@@ -135,12 +137,18 @@ function Main() {
   }, [])
   return (
     <div className="index-wrap">
-      <img
-        className="rounded-xl"
-        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5453005f74be2.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667024522&t=261ed7cc222e220fdfff3d24cc118eb7"
-        alt=""
-      />
+      <HeadImg></HeadImg>
       <BaseInfo countDown={countDown} />
+      <StaticInfo></StaticInfo>
+      <div className="staticinfo-wrap"><img
+          className="rounded-xl"
+          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5453005f74be2.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667024522&t=261ed7cc222e220fdfff3d24cc118eb7"
+          alt=""
+        /></div>
+      <div className="staticinfo-wrap license">
+        <span>License</span>
+        <img src="/assets/image/icon_arrow.png" alt="" />
+      </div>
       {/* <button className={"button"} onClick={() => requestUserInfo()}>请求获取用户信息</button>
       <button className={"button"} onClick={() => requestAddCalander()}>请求添加日历</button>
       <button className={"button"} onClick={() => requestPayOrder()}>请求支付订单</button>

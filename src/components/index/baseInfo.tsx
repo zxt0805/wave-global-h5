@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-09-30 15:52:08
+ * @LastEditTime: 2022-10-08 14:21:18
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,12 +39,14 @@ function BaseInfo(props) {
 
   return (
     <div className="baseinfo-wrap">
-      <div>
         <p className="title">
           Victory<span className="icon">EVT</span>
         </p>
-        <p className="time">Starts In: August 28</p>
-        <div className="count-down">
+        <div className="nums">
+          <div className="nums-item"><span className="tip">Remaining</span><span className="number">1000</span></div>
+          <div className="nums-item"><span className="tip">total</span><span className="number">1000</span></div>
+        </div>
+        {/* <div className="count-down">
           <div className="time-item">
             <p className="time">{day}</p>
             <p className="unit">Day</p>
@@ -64,19 +66,7 @@ function BaseInfo(props) {
             <p className="time">{sec}</p>
             <p className="unit">Sec</p>
           </div>
-        </div>
-        <div className="progress">
-          <div className="num">
-            <span>375</span>/1000
-          </div>
-          <p className="tip">Remaining/Total Supp</p>
-          <div className="bar">
-            <div className="remain">
-              <div className="num-tip">376</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </div> */}
     </div>
   )
 }
