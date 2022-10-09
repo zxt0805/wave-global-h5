@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 10:38:19
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-09 11:10:30
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 23:41:35
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react'
 import { postRequest } from '../../services/getAxios'
 import { useRouter } from 'next/router'
 import { Skeleton, Space } from 'antd'
+import { CollectionInfo } from 'model/collection_model'
 export default Home
 
 function Home() {
@@ -34,7 +35,7 @@ function Main() {
   const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
   const [isLogin, setIsLogin] = useState(false)
-  const [collectionInfo, setCollectionInfo] = useState()
+  const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
 
   const collectionUrl = '/api/collection'
 
