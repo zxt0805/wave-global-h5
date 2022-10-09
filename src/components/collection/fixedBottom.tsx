@@ -2,8 +2,11 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 16:09:48
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 16:55:21
+ * @LastEditTime: 2022-10-09 17:11:25
  * @FilePath: /wave-global-h5/src/components/index/fixBottom.tsx
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-09 17:02:42
+ * @FilePath: /wave-chinese-website/src/components/collection/fixedBottom.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 // import React, { useEffect, useState } from 'react'
@@ -14,10 +17,7 @@ export default fixedBottom
 
 function fixedBottom(props) {
   const { addToCalendar, payOrder, gotoTrade, collectionInfo } = props
-  console.log(collectionInfo)
-
   function saleStatusChange() {
-    console.log(collectionInfo)
     if (collectionInfo.sell_status == 0) {
       // TODO: 加入日历状态判断按钮展示
       // 未加
