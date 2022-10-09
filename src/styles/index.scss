@@ -1,34 +1,36 @@
 .index-wrap {
   @apply bg-white pb-40;
-  .head-img{
-    @apply relative text-white p-4;
-    .time-onimg{
-        @apply absolute p-2 bg-black rounded-[0.25rem] left-6 top-7 text-base;
+  .head-img {
+    @apply relative p-4 text-white;
+    .time-onimg {
+      @apply absolute left-6 top-7 rounded-[0.25rem] bg-black p-2 text-base;
     }
-    .status-onimg{
-        @apply absolute  left-6 bottom-7  text-xs bg-black bg-opacity-30 rounded-[0.25rem] px-2 py-1;
+    .status-onimg {
+      @apply absolute  left-6 bottom-7  rounded-[0.25rem] bg-black bg-opacity-30 px-2 py-1 text-xs;
+    }
+    .disabled {
+      @apply bg-whitef0 bg-opacity-80 text-gray6a;
     }
   }
   .baseinfo-wrap {
-    @apply rounded-xl bg-white pb-5 px-4  mt-5;
+    @apply mt-5 rounded-xl bg-white px-4  pb-5;
     .title {
-      @apply relative text-[1.625rem] leading-6 font-bold;
+      @apply relative text-[1.625rem] font-bold leading-6;
       .icon {
         @apply absolute top-0 ml-2 h-[1.125rem] w-[2.175rem] scale-[0.83] rounded-sm bg-greenMain text-center text-xs leading-[1.2rem] text-white;
       }
     }
-    .nums{
-        @apply overflow-hidden mt-4;
-        .nums-item{
-            @apply mr-4 rounded-sm overflow-hidden text-xs  float-left;
-            .tip{
-                @apply bg-graybf p-1 text-white leading-6;
-            }
-            .number{
-                @apply p-1 bg-grayf5 text-gray333 font-bold leading-6;
-            }
-            
+    .nums {
+      @apply mt-4 overflow-hidden;
+      .nums-item {
+        @apply float-left mr-4 overflow-hidden rounded-sm  text-xs;
+        .tip {
+          @apply bg-graybf p-1 leading-6 text-white;
         }
+        .number {
+          @apply bg-grayf5 p-1 font-bold leading-6 text-gray333;
+        }
+      }
     }
     .count-down {
       @apply mt-4 flex items-center justify-between rounded-[0.875rem] border-[1.5px] px-[1.25rem] pt-4 pb-[0.75rem];
@@ -45,73 +47,75 @@
         @apply mt-1 self-start text-lg;
       }
     }
-
   }
-  .staticinfo-wrap{
+  .staticinfo-wrap {
     @apply border-t-8 border-grayf9 px-4 py-5;
-    .title{
-        @apply text-lg text-gray333 font-bold mb-4;
+    .title {
+      @apply mb-4 text-lg font-bold text-gray333;
     }
-    .content-wrap{
-        @apply text-sm  mb-7;
-      .content{
-          @apply  text-gray666 h-10 line-clamp-2;
+    .content-wrap {
+      @apply mb-7  text-sm;
+      .content {
+        @apply h-10 text-gray666 line-clamp-2;
       }
     }
-    .spec-info{
-        @apply text-sm;
-        .item{
-          @apply mb-3 w-[7.5rem];
-            p{
-              
-              @apply truncate;
-            }
-            img{
-                @apply float-right;
-            }
-            .icon-copy{
-                @apply w-[1.125rem] h-[1.125rem] ml-[0.125rem];
-            }
-            .icon-ques{
-                @apply w-[0.8125rem] h-[0.8125rem] ml-1 mt-[0.125rem];
-            }
+    .spec-info {
+      @apply text-sm;
+      .item {
+        @apply mb-3 w-[7.5rem];
+        p {
+          @apply truncate;
         }
-        .info-title{
-            @apply text-gray666 float-left flex-none;
+        img {
+          @apply float-right;
         }
-        .info-content{
-            @apply text-gray333 text-right flex-1;
-            .item{
-              @apply  flex items-center justify-end float-right;
-            }
+        .icon-copy {
+          @apply ml-[0.125rem] h-[1.125rem] w-[1.125rem];
         }
-        .spec-tip{
-            @apply mt-3 pl-[0.625rem] text-xs text-gray999 relative;
-            .icon-point{
-                @apply w-[0.375rem] h-[0.375rem] absolute left-0 top-1;
-            }
-            p{
-              @apply h-8 line-clamp-2;
-            }
+        .icon-ques {
+          @apply ml-1 mt-[0.125rem] h-[0.8125rem] w-[0.8125rem];
         }
+      }
+      .info-title {
+        @apply float-left flex-none text-gray666;
+      }
+      .info-content {
+        @apply flex-1 text-right text-gray333;
+        .item {
+          @apply float-right flex items-center justify-end;
+        }
+      }
+      .spec-tip {
+        @apply relative mt-3 pl-[0.625rem] text-xs text-gray999;
+        .icon-point {
+          @apply absolute left-0 top-1 h-[0.375rem] w-[0.375rem];
+        }
+        p {
+          @apply h-8 line-clamp-2;
+        }
+      }
     }
   }
-  .license{
+  .license {
     @apply flex justify-between text-lg font-bold;
-    img{
-        @apply w-[1.1875rem] h-5;
+    img {
+      @apply h-5 w-[1.1875rem];
     }
   }
   .fixBottom {
     @apply fixed left-0 bottom-0 flex w-full items-center justify-between border-t-[1px] border-grayef  bg-white p-4 p-2 text-[1.375rem] font-bold text-greenDark;
-    .end{
+    .end {
       @apply text-gray999;
     }
     .button {
       @apply rounded-lg bg-gray333 px-4 py-[0.65rem] text-lg text-white;
     }
+
+    .button-disable {
+      @apply bg-grayEA font-normal text-gray999;
+    }
   }
-  .more{
+  .more {
     @apply text-gray333;
   }
 }

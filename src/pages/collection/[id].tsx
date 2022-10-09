@@ -2,14 +2,14 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-08 22:13:23
+ * @LastEditTime: 2022-10-08 22:29:08
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import HeadImg from 'components/index/headImg'
-import BaseInfo from 'components/index/baseInfo'
-import StaticInfo from 'components/index/staticInfo'
-import FixBottom from 'components/index/fixedBottom'
+import HeadImg from 'components/collection/headImg'
+import BaseInfo from 'components/collection/baseInfo'
+import StaticInfo from 'components/collection/staticInfo'
+import FixBottom from 'components/collection/fixedBottom'
 
 import NormalLayout from 'components/Layout/normalLayout'
 import { PageModel } from 'model/navModel'
@@ -17,14 +17,13 @@ import { useEffect, useState } from 'react'
 
 import { postRequest } from '../../services/getAxios'
 import { useRouter } from 'next/router'
-import { Skeleton, Space } from 'antd';
+import { Skeleton, Space } from 'antd'
 export default Home
 
 function Home() {
   let pageModel = new PageModel('北京压缩矩阵科技有限公司', 'WAVE', '')
   return <>{NormalLayout(Main(), pageModel)}</>
 }
-
 
 function Main() {
   const router = useRouter()
@@ -46,12 +45,11 @@ function Main() {
     checkCalendar()
   }, [isLogin, id])
 
-
   function fetchCollectionInfo() {
     if (isLogin) {
       requestCollectionInfo(id)
     } else {
-      // 
+      //
       let params = {
         collection_id: id.toString(),
       }
@@ -64,8 +62,6 @@ function Main() {
       getCollectionInfo()
     }
   }
-
-
 
   function requestUserInfo() {
     console.log('call requestUserInfo')
@@ -161,13 +157,13 @@ function Main() {
     let params = {
       name: 'requestCollection',
       data: {
-        'collection_id': id.toString()
+        collection_id: id.toString(),
       },
     }
     postMessage(params, function (data) {
-      console.log(data.result);
+      console.log(data.result)
       if (data != null) {
-        setCollectionInfo(data.result);
+        setCollectionInfo(data.result)
       }
     })
   }
@@ -192,22 +188,21 @@ function Main() {
 
   if (collectionInfo == null) {
     return (
-      <div className='skeleton-wap'>
+      <div className="skeleton-wap">
         <Skeleton.Image active />
         <Skeleton active paragraph={{ rows: 20 }} />
-      </div>)
+      </div>
+    )
   } else {
-    console.log(collectionInfo);
+    console.log(collectionInfo)
     return (
       <div className="index-wrap">
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
-        <div className="staticinfo-wrap"><img
-          className="rounded-xl"
-          src={collectionInfo.banner}
-          alt=""
-        /></div>
+        <div className="staticinfo-wrap">
+          <img className="rounded-xl" src={collectionInfo.banner} alt="" />
+        </div>
         <div className="staticinfo-wrap license">
           <span>License</span>
           <img src="/assets/image/icon_arrow.png" alt="" />
@@ -223,6 +218,4 @@ function Main() {
       </div>
     )
   }
-
-
 }

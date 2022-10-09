@@ -40,14 +40,21 @@ function BaseInfo(props) {
 
   return (
     <div className="baseinfo-wrap">
-        <p className="title">
-        {collectionInfo.name}<span className="icon">EVT</span>
-        </p>
-        <div className="nums">
-          <div className="nums-item"><span className="tip">Remaining</span><span className="number">{collectionInfo.box_total - collectionInfo.sold_quantity}</span></div>
-          <div className="nums-item"><span className="tip">total</span><span className="number">{collectionInfo.box_total}</span></div>
+      <p className="title">
+        {collectionInfo.name}
+        <span className="icon">EVT</span>
+      </p>
+      <div className="nums">
+        <div className="nums-item">
+          <span className="tip">Remaining</span>
+          <span className="number">{collectionInfo.box_total - collectionInfo.sold_quantity}</span>
         </div>
-        {/* <div className="count-down">
+        <div className="nums-item">
+          <span className="tip">total</span>
+          <span className="number">{collectionInfo.box_total}</span>
+        </div>
+      </div>
+      {/* <div className="count-down">
           <div className="time-item">
             <p className="time">{day}</p>
             <p className="unit">Day</p>
