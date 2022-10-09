@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 11:10:30
+ * @LastEditTime: 2022-10-09 11:48:19
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 23:41:35
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -217,10 +217,10 @@ function Main() {
         <div className="staticinfo-wrap">
           <img className="rounded-xl" src={collectionInfo.banner} alt="" />
         </div>
-        <div className="staticinfo-wrap license">
+        <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
           <span>License</span>
           <img src="/assets/image/icon_arrow.png" alt="" />
-        </div>
+        </a>
         <FixBottom
           collectionInfo={collectionInfo}
           saleStatus={saleStatus}
