@@ -11,12 +11,13 @@ import React, { useEffect, useState } from 'react'
 export default HeadImg
 
 function HeadImg(props) {
-  const [seconds, setSeconds] = useState(0);
+  // const [seconds, setSeconds] = useState(0);
 
   let { collectionInfo } = props
   let nowTime = Math.floor(new Date().getTime() / 1000);
   // seconds = nowTime - collectionInfo.sell_start_time // *** 替换为开始时间 - 当前时间
-  setSeconds(nowTime - collectionInfo.sell_start_time)
+  // setSeconds(nowTime - collectionInfo.sell_start_time)
+  let seconds = nowTime - collectionInfo.sell_start_time
 
   
   // countDown()
