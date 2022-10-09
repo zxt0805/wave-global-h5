@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 15:05:52
+ * @LastEditTime: 2022-10-09 16:08:27
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,7 +24,7 @@ function HeadImg(props) {
       setremainSecond(remainTime);
       countDown(remainTime)
     }
-  }, [0]);
+  }, [0])
 
   function countDown(time) {
     if(timer){
@@ -72,9 +72,9 @@ function HeadImg(props) {
   function getTimeStr(timestamp) {
     let time = new Date(timestamp * 1000),
       timeZone = time.getTimezoneOffset() / 60
-    return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(time.getMinutes()
-    )}:${fillZero(time.getSeconds()
-      )}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`
+    return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(
+      time.getMinutes()
+    )}:${fillZero(time.getSeconds())}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`
   }
 
   function fillZero(num) {

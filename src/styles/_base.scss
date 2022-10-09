@@ -59,6 +59,12 @@ h2 {
 .skeleton-wap {
   @apply p-4;
   .ant-skeleton-element {
-    @apply pb-4;
+    @apply w-full rounded-xl pb-[2.25rem];
+  }
+  .ant-skeleton-image {
+    @apply h-[207px] w-full leading-[207px];
+    svg {
+      @apply h-[100px] w-[100px];
+    }
   }
 }
