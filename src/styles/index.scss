@@ -1,5 +1,5 @@
 .index-wrap {
-  @apply bg-white pb-40;
+  @apply bg-white pb-28;
   .head-img {
     @apply relative p-4 text-white;
     .time-onimg {
@@ -58,7 +58,7 @@
           @apply ml-[0.125rem] h-[1.125rem] w-[1.125rem];
         }
         .icon-ques {
-          @apply ml-1 mt-[0.125rem] h-[0.8125rem] w-[0.8125rem];
+          @apply ml-1 h-[0.8125rem] w-[0.8125rem]; // mt-[0.125rem] 
         }
       }
       .info-title {

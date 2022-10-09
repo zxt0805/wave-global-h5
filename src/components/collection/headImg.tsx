@@ -1,8 +1,8 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 11:50:23
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-09 15:05:52
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,31 +13,35 @@ export default HeadImg
 function HeadImg(props) {
   let { collectionInfo } = props
 
-  const [countDownSecond, setCountDownSecond] = useState(0);
-  const [needCountDown, setNeedCountDown] = useState(false)
-
+  const [remainSecond, setremainSecond] = useState(0);
+  let timer
 
   useEffect(() => {
-    let deltaTime = collectionInfo.sell_start_time - collectionInfo.system_time;
-    if(deltaTime > 86400) {
-      // show start in components
-      setNeedCountDown(false)
-    } else if(deltaTime < 86400 && deltaTime > 0) {
-      // show countDown components
-      setNeedCountDown(true);
-      setCountDownSecond(deltaTime);
-      countDown(deltaTime)
-    } else {
-      // show sold components
-      setNeedCountDown(false)
+    let remainTime = collectionInfo.sell_start_time - collectionInfo.system_time;
+    console.log(remainTime)
+
+    if(collectionInfo.sell_status == 0 && remainTime <= 86400) {
+      setremainSecond(remainTime);
+      countDown(remainTime)
     }
   }, [0]);
 
   function countDown(time) {
-    setInterval(() => {
+    if(timer){
+      clearInterval(timer)
+    }
+    timer = setInterval(() => {
       time = time - 1
-      setCountDownSecond(time)
+      setremainSecond(time)
     }, 1000)
+  }
+
+  function calculateCountdown(remain) {
+    let hrs = Math.floor(remain / 3600) || 0;
+    remain = remain % 3600;
+    let min = Math.floor(remain / 60) || 0,
+        sec = remain % 60
+    return `${fillZero(hrs)}:${fillZero(min)}:${fillZero(sec)}`
   }
 
   function statusJudge() {
@@ -53,15 +57,13 @@ function HeadImg(props) {
   }
 
   function timeJudge() {
-    if (collectionInfo.sell_status == 1) {
+    if (collectionInfo.sell_status == 0) {
       // TODO: 缺少当前时间戳字段判断展示倒计时/发售时间
-      // if (seconds > 86400) {
-      //   return <div className="time-onimg">Start at {getTimeStr(collectionInfo.sell_start_time)}</div>
-      // } else {
-        // return <div className="time-onimg">Start in {new Date(collectionInfo.sell_start_time * 1000).toLocaleString()}</div>
-        return <div className="time-onimg">Start in {getTimeStr(countDownSecond)}</div>
-
-        // }
+      if (remainSecond > 86400) {
+        return (<div className="time-onimg">Start at {getTimeStr(collectionInfo.sell_start_time)}</div>)
+      } else {
+        return <div className="time-onimg">Start in {calculateCountdown(remainSecond)}</div>
+      }
     } else {
       return <div className="time-onimg">Reveals at {getTimeStr(collectionInfo.reveals_time)}</div>
     }

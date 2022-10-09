@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 11:48:19
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-09 16:07:19
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 23:41:35
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -21,6 +21,9 @@ import { postRequest } from '../../services/getAxios'
 import { useRouter } from 'next/router'
 import { Skeleton, Space } from 'antd'
 import { CollectionInfo } from 'model/collection_model'
+import { useTranslation } from "react-i18next";
+import { t } from 'i18next'
+
 export default Home
 
 function Home() {
@@ -29,6 +32,8 @@ function Home() {
 }
 
 function Main() {
+  const { t } = useTranslation();
+
   const router = useRouter()
   const { id } = router.query
 
@@ -211,6 +216,7 @@ function Main() {
   } else {
     return (
       <div className="index-wrap">
+        {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
