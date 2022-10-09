@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 17:30:17
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-09 20:45:21
  * @LastEditors: liukeke liukeke@diynova.com
  * @LastEditTime: 2022-10-09 14:43:23
  * @LastEditors: weixuefeng weixuefeng@diynova.com
@@ -23,17 +23,17 @@ import { postRequest } from '../../services/getAxios'
 import { useRouter } from 'next/router'
 import { Skeleton } from 'antd'
 import { CollectionInfo } from 'model/collection_model'
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 export default Home
 
 function Home() {
-  let pageModel = new PageModel('北京压缩矩阵科技有限公司', 'WAVE', '')
+  let pageModel = new PageModel('WAVE', 'WAVE', '')
   return <>{NormalLayout(Main(), pageModel)}</>
 }
 
 function Main() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const router = useRouter()
   const { id } = router.query
@@ -113,7 +113,7 @@ function Main() {
     }
     postMessage(params, function (data) {
       if (data != null && data.error_code == 1) {
-        if(data.result['has_add_calendar'] == 1) {
+        if (data.result['has_add_calendar'] == 1) {
           setHasAddCalendar(true)
         } else {
           setHasAddCalendar(false)
@@ -191,9 +191,9 @@ function Main() {
       eventLocation: 'Wave',
       start_time: collectionInfo.sell_start_time,
       end_time: collectionInfo.reveals_time,
-      advanceTime: 10, 
-      rule: "null",
-      collection_id: collectionInfo.id
+      advanceTime: 10,
+      rule: 'null',
+      collection_id: collectionInfo.id,
     }
     setCalendarInfo(info)
     checkCalendar(info)

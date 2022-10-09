@@ -58,7 +58,7 @@
           @apply ml-[0.125rem] h-[1.125rem] w-[1.125rem];
         }
         .icon-ques {
-          @apply ml-1 h-[0.8125rem] w-[0.8125rem]; // mt-[0.125rem] 
+          @apply ml-1 h-[0.8125rem] w-[0.8125rem]; // mt-[0.125rem]
         }
       }
       .info-title {
@@ -67,16 +67,16 @@
       .info-content {
         @apply flex-1 text-right text-gray333;
         .item {
-          @apply float-right flex items-center justify-end relative;
+          @apply relative float-right flex items-center justify-end;
         }
-        .bubble{
+        .bubble {
           @apply absolute right-[-1rem] bottom-0;
-          img{
+          img {
             max-width: 13.375rem;
-            @apply w-[13.375rem] h-[7.1875rem];
+            @apply h-[7.1875rem] w-[13.375rem];
           }
-          .bubble-content{
-            @apply absolute left-0 top-0 pt-[1.75rem] px-[1.6rem] text-xs leading-5 break-words w-full h-full text-left;
+          .bubble-content {
+            @apply absolute left-0 top-0 h-full w-full break-words px-[1.6rem] pt-[1.75rem] text-left text-xs leading-5;
           }
         }
       }

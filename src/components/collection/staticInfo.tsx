@@ -11,7 +11,7 @@
  */
 import React, { useEffect, useState } from 'react'
 import { t } from 'i18next'
-import copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard'
 
 export default StaticInfo
 
@@ -26,10 +26,10 @@ function StaticInfo(props) {
   function changeShowAllTips() {
     setShowAllTips(!showAllTips)
   }
-  function copyAddress(str){
-    copy(str);
+  function copyAddress(str) {
+    copy(str)
   }
-  function showBubble(){
+  function showBubble() {
     setIsShowBubble(true)
     setTimeout(() => {
       setIsShowBubble(false)
@@ -57,27 +57,37 @@ function StaticInfo(props) {
             <div className="info-content">
               <div className="item">
                 <p className="needTruncate">{props.collectionInfo.specifications.contract_address}</p>
-                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy"/>
+                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy" />
                 {/* onClick={copyAddress(props.collectionInfo.specifications.contract_address)} */}
               </div>
               <p className="item">{props.collectionInfo.specifications.token_standard}</p>
               <p className="item">{props.collectionInfo.specifications.block_chain}</p>
               <div className="item">
                 {props.collectionInfo.specifications.creator_earnings}
-                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={() => showBubble()}/>
+                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={() => showBubble()} />
                 {/* onClick={showBubble(true)} */}
-                {isShowBubble && <div className="bubble">
-                  <img src="/assets/image/bubble.png" alt="" />
-                  <p className="bubble-content">{t('BUBBLEBEFORE') + ' ' + props.collectionInfo.specifications.creator_earnings + ' ' + t('BUBBLEAFTER')}</p>
-                </div>}
-                
+                {isShowBubble && (
+                  <div className="bubble">
+                    <img src="/assets/image/bubble.png" alt="" />
+                    <p className="bubble-content">
+                      {t('BUBBLEBEFORE') +
+                        ' ' +
+                        props.collectionInfo.specifications.creator_earnings +
+                        ' ' +
+                        t('BUBBLEAFTER')}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div className="spec-tip">
-            <img src="/assets/image/icon-point.png" alt="" className="icon-point"/>
+            <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
             {/* className={showAllTips ? '' : 'h-8 line-clamp-2'} */}
-            <p>{t('TIPS')}<span className="more">{t('MORE')}</span></p>
+            <p>
+              {t('TIPS')}
+              <span className="more">{t('MORE')}</span>
+            </p>
             {/* <p className="more" onClick={changeShowAllTips}>
               {showAllTips ? t('COLLAPSE') : t('MORE')}
             </p> */}
