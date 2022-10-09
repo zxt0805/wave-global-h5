@@ -61,7 +61,7 @@ function Main() {
       const getCollectionInfo = async () => {
         const res = await postRequest(collectionUrl, params)
         if (res.status == 200 && res.data.error_code == 1) {
-          const info = JSON.parse(res.data.result)
+          const info = res.data.result
           setCollectionInfo(info)
           initCalendarInfo(info)
         }
