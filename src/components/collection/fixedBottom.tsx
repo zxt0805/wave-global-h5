@@ -2,16 +2,18 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 16:09:48
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-08 22:54:01
+ * @LastEditTime: 2022-10-09 16:55:21
  * @FilePath: /wave-global-h5/src/components/index/fixBottom.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 // import React, { useEffect, useState } from 'react'
 
+import { t } from "i18next"
+
 export default fixedBottom
 
 function fixedBottom(props) {
-  const { saleStatus, addToCalendar, payOrder, gotoTrade, collectionInfo } = props
+  const { addToCalendar, payOrder, gotoTrade, collectionInfo } = props
   console.log(collectionInfo)
 
   function saleStatusChange() {
@@ -23,7 +25,7 @@ function fixedBottom(props) {
         <div className="fixBottom">
           <div className="statusInfo">{collectionInfo.sell_price}NEW</div>
           <div className="button" onClick={addToCalendar}>
-            Add to Calendar
+            {t('ADDTOCALENDAR')}
           </div>
         </div>
       )
@@ -31,7 +33,7 @@ function fixedBottom(props) {
       return (
         <div className="fixBottom">
           <div className="statusInfo">{collectionInfo.sell_price}NEW</div>
-          <div className="button button-disable">Add to Calendar</div>
+          <div className="button button-disable">{t('ADDEDTOCALENDAR')}</div>
         </div>
       )
     } else {
@@ -40,7 +42,7 @@ function fixedBottom(props) {
           <div className="fixBottom">
             <div className="statusInfo end">{collectionInfo.sell_price}NEW</div>
             <div className="button" onClick={gotoTrade}>
-              {props.collectionInfo.is_boughtGo ? 'Check My Assets' : 'Go to Trade'}
+              {props.collectionInfo.is_boughtGo ? t('CHECKMYASSETS') : t('GOTOTRADE')}
             </div>
           </div>
         )
@@ -49,7 +51,7 @@ function fixedBottom(props) {
           <div className="fixBottom">
             <div className="statusInfo">{collectionInfo.sell_price}NEW</div>
             <div className="button" onClick={payOrder}>
-              Buy
+              {t('BUY')}
             </div>
           </div>
         )
@@ -61,25 +63,6 @@ function fixedBottom(props) {
   return (
     <div className="fixBottom flex-col">
       {saleStatusChange()}
-      {/* <div className="flex w-full items-center justify-between">
-        <div className="statusInfo">1000NEW</div>
-        <div className="button" onClick={payOrder}>
-          Buy
-        </div>
-      </div>
-      <div className="flex w-full items-center justify-between">
-        <div className="statusInfo">1000NEW</div>
-        <div className="button" onClick={addToCalendar}>
-          add to calendar
-        </div>
-      </div>
-
-      <div className="flex w-full items-center justify-between">
-        <div className="statusInfo">ended</div>
-        <div className="button" onClick={gotoTrade}>
-          GOTO Trade
-        </div>
-      </div> */}
     </div>
   )
 }

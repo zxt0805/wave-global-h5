@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 11:16:28
+ * @LastEditTime: 2022-10-09 17:03:44
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -10,6 +10,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react'
+import { t } from 'i18next'
 
 export default StaticInfo
 
@@ -25,22 +26,22 @@ function StaticInfo(props) {
   }
   return (
     <div className="staticinfo-wrap">
-      <p className="title">Introduction</p>
+      <p className="title">{t('INTRODUCTION')}</p>
       <div className="content-wrap">
         <p className={showAllIntro ? '' : 'h-10 text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
         <p className="more" onClick={changeShowAllIntro}>
-          {showAllIntro ? '收起' : 'More'}
+          {showAllIntro ? t('COLLAPSE') : t('MORE')}
         </p>
       </div>
-      <p className="title">Specifications</p>
+      <p className="title">{t('SPECIFICATTIONS')}</p>
       {props.collectionInfo.specifications && (
         <div className="spec-info">
           <div className="flex">
             <div className="info-title">
-              <p className="item">Contract Address</p>
-              <p className="item">Token Standard</p>
-              <p className="item">Blockchain</p>
-              <p className="item">Creator Earnings</p>
+              <p className="item">{t('CONTRACTADDRESS')}</p>
+              <p className="item">{t('TOKENSTANDARD')}</p>
+              <p className="item">{t('BLOCKCHAIN')}</p>
+              <p className="item">{t('CREATOREARNINGS')}</p>
             </div>
             <div className="info-content">
               <div className="item">
@@ -62,7 +63,7 @@ function StaticInfo(props) {
               physical world
             </p>
             <p className="more" onClick={changeShowAllTips}>
-              {showAllTips ? '收起' : 'More'}
+              {showAllTips ? t('COLLAPSE') : t('MORE')}
             </p>
           </div>
         </div>

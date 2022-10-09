@@ -1,3 +1,25 @@
 {
-	"title": "Hello Word"
+	"title": "Hello Word",
+	"UPCOMMINGDROP": "Upcoming drop",
+	"SOLDOUT": "Sold out",
+	"LIVEDROP": "Live drop",
+	"REVEALSAT": "Reveals at",
+	"STARTSAT": "Starts at",
+	"STARTSIN": "Starts in",
+	"REMAINING": "Remaining",
+	"TOTALSUPPLY": "Total Supply",
+	"INTRODUCTION": "Introduction",
+	"MORE": "More",
+	"COLLAPSE": "Collapse",
+	"SPECIFICATTIONS": "Specifications",
+	"CONTRACTADDRESS": "Contract Address",
+	"TOKENSTANDARD": "Token Standard",
+	"BLOCKCHAIN": "Blockchain",
+	"CREATOREARNINGS": "Creator Earnings",
+	"LICENSE": "License",
+	"ADDTOCALENDAR": "Add to Calendar",
+	"ADDEDTOCALENDAR": "Added to Calendar",
+	"CHECKMYASSETS": "Check My Assets",
+	"GOTOTRADE": "Go to Trade",
+	"BUY": "Buy"
 }

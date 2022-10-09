@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 16:08:26
+ * @LastEditTime: 2022-10-09 16:49:24
  * @LastEditors: liukeke liukeke@diynova.com
  * @LastEditTime: 2022-10-09 14:43:23
  * @LastEditors: weixuefeng weixuefeng@diynova.com
@@ -39,7 +39,6 @@ function Main() {
   const router = useRouter()
   const { id } = router.query
 
-  const [saleStatus, setSaleStatus] = useState('saling')
   const [countDown, setCountDown] = useState(1000000)
   const [isLogin, setIsLogin] = useState(false)
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
@@ -47,7 +46,6 @@ function Main() {
   const collectionUrl = '/api/collection'
 
   useEffect(() => {
-    setSaleStatus('saling')
     requestUserInfo()
     if (id != undefined) {
       fetchCollectionInfo()
@@ -225,12 +223,11 @@ function Main() {
           <img className="rounded-xl" src={collectionInfo.banner} alt="" />
         </div>
         <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
-          <span>License</span>
+          <span>{t('LICENSE')}</span>
           <img src="/assets/image/icon_arrow.png" alt="" />
         </a>
         <FixBottom
           collectionInfo={collectionInfo}
-          saleStatus={saleStatus}
           addToCalendar={() => requestAddCalendar()}
           payOrder={() => requestPayOrder()}
           gotoTrade={() => gotoTrade()}

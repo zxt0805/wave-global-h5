@@ -1,3 +1,25 @@
 {
-	"title": "你好 世界"
+	"title": "你好 世界",
+	"UPCOMMINGDROP": "即将开售",
+	"SOLDOUT": "已售罄",
+	"LIVEDROP": "热卖中",
+	"REMAINING": "剩余",
+	"REVEALSAT": "开盒时间",
+	"STARTSAT": "开售时间",
+	"STARTSIN": "开售时间",
+	"TOTALSUPPLY": "限量",
+	"INTRODUCTION": "简介",
+	"MORE": "更多",
+	"COLLAPSE": "折叠",
+	"SPECIFICATTIONS": "链信息",
+	"CONTRACTADDRESS": "合约地址",
+	"TOKENSTANDARD": "标准",
+	"BLOCKCHAIN": "区块链",
+	"CREATOREARNINGS": "版税比例",
+	"LICENSE": "许可协议",
+	"ADDTOCALENDAR": "设置购买提醒",
+	"ADDEDTOCALENDAR": "已设置提醒",
+	"CHECKMYASSETS": "查看我的资产",
+	"GOTOTRADE": "去交易",
+	"BUY": "立即购买"
 }
