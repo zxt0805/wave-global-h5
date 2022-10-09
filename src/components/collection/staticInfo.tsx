@@ -1,9 +1,9 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 18:21:26
- * @FilePath: /wave-global-h5/src/components/index/title.tsx
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-09 19:53:19
+ * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
  * @FilePath: /wave-chinese-website/src/components/index/staticInfo.tsx
@@ -29,8 +29,11 @@ function StaticInfo(props) {
   function copyAddress(str){
     copy(str);
   }
-  function showBubble(val){
-    setIsShowBubble(val)
+  function showBubble(){
+    setIsShowBubble(true)
+    setTimeout(() => {
+      setIsShowBubble(false)
+    }, 1000)
   }
   return (
     <div className="staticinfo-wrap">
@@ -61,17 +64,18 @@ function StaticInfo(props) {
               <p className="item">{props.collectionInfo.specifications.block_chain}</p>
               <div className="item">
                 {props.collectionInfo.specifications.creator_earnings}
-                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" />
+                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={() => showBubble()}/>
                 {/* onClick={showBubble(true)} */}
-                <div className="bubble">
+                {isShowBubble && <div className="bubble">
                   <img src="/assets/image/bubble.png" alt="" />
                   <p className="bubble-content">{t('BUBBLEBEFORE') + ' ' + props.collectionInfo.specifications.creator_earnings + ' ' + t('BUBBLEAFTER')}</p>
-                </div>
+                </div>}
+                
               </div>
             </div>
           </div>
           <div className="spec-tip">
-            <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
+            <img src="/assets/image/icon-point.png" alt="" className="icon-point"/>
             {/* className={showAllTips ? '' : 'h-8 line-clamp-2'} */}
             <p>{t('TIPS')}<span className="more">{t('MORE')}</span></p>
             {/* <p className="more" onClick={changeShowAllTips}>
