@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 11:48:19
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-09 14:43:23
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 23:41:35
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -123,7 +123,7 @@ function Main() {
   }
 
   function requestPayOrder() {
-    if(!isLogin) {
+    if (!isLogin) {
       let params = {
         name: 'requestRoute',
         data: {
@@ -153,7 +153,6 @@ function Main() {
     }
   }
 
-
   function gotoTrade() {
     let params = {
       name: 'requestRoute',
@@ -178,7 +177,7 @@ function Main() {
     }
     postMessage(params, function (data) {
       if (data != null) {
-        setCollectionInfo(JSON.parse(data.result));
+        setCollectionInfo(JSON.parse(data.result))
       }
     })
   }

@@ -13,25 +13,24 @@ export default HeadImg
 function HeadImg(props) {
   let { collectionInfo } = props
 
-  const [countDownSecond, setCountDownSecond] = useState(0);
+  const [countDownSecond, setCountDownSecond] = useState(0)
   const [needCountDown, setNeedCountDown] = useState(false)
 
-
   useEffect(() => {
-    let deltaTime = collectionInfo.sell_start_time - collectionInfo.system_time;
-    if(deltaTime > 86400) {
+    let deltaTime = collectionInfo.sell_start_time - collectionInfo.system_time
+    if (deltaTime > 86400) {
       // show start in components
       setNeedCountDown(false)
-    } else if(deltaTime < 86400 && deltaTime > 0) {
+    } else if (deltaTime < 86400 && deltaTime > 0) {
       // show countDown components
-      setNeedCountDown(true);
-      setCountDownSecond(deltaTime);
+      setNeedCountDown(true)
+      setCountDownSecond(deltaTime)
       countDown(deltaTime)
     } else {
       // show sold components
       setNeedCountDown(false)
     }
-  }, [0]);
+  }, [0])
 
   function countDown(time) {
     setInterval(() => {
@@ -58,10 +57,10 @@ function HeadImg(props) {
       // if (seconds > 86400) {
       //   return <div className="time-onimg">Start at {getTimeStr(collectionInfo.sell_start_time)}</div>
       // } else {
-        // return <div className="time-onimg">Start in {new Date(collectionInfo.sell_start_time * 1000).toLocaleString()}</div>
-        return <div className="time-onimg">Start in {getTimeStr(countDownSecond)}</div>
+      // return <div className="time-onimg">Start in {new Date(collectionInfo.sell_start_time * 1000).toLocaleString()}</div>
+      return <div className="time-onimg">Start in {getTimeStr(countDownSecond)}</div>
 
-        // }
+      // }
     } else {
       return <div className="time-onimg">Reveals at {getTimeStr(collectionInfo.reveals_time)}</div>
     }
@@ -70,9 +69,9 @@ function HeadImg(props) {
   function getTimeStr(timestamp) {
     let time = new Date(timestamp * 1000),
       timeZone = time.getTimezoneOffset() / 60
-    return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(time.getMinutes()
-    )}:${fillZero(time.getSeconds()
-      )}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`
+    return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(
+      time.getMinutes()
+    )}:${fillZero(time.getSeconds())}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`
   }
 
   function fillZero(num) {

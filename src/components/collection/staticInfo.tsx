@@ -17,18 +17,20 @@ function StaticInfo(props) {
   const [showAllIntro, setShowAllIntro] = useState(false)
   const [showAllTips, setShowAllTips] = useState(false)
 
-  function changeShowAllIntro(){
+  function changeShowAllIntro() {
     setShowAllIntro(!showAllIntro)
   }
-  function changeShowAllTips(){
+  function changeShowAllTips() {
     setShowAllTips(!showAllTips)
   }
   return (
     <div className="staticinfo-wrap">
       <p className="title">Introduction</p>
       <div className="content-wrap">
-        <p className={showAllIntro ? "" : "h-10 text-gray666 line-clamp-2"}>{props.collectionInfo.description}</p>
-        <p className="more" onClick={changeShowAllIntro}>{showAllIntro ? '收起' : 'More'}</p>
+        <p className={showAllIntro ? '' : 'h-10 text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
+        <p className="more" onClick={changeShowAllIntro}>
+          {showAllIntro ? '收起' : 'More'}
+        </p>
       </div>
       <p className="title">Specifications</p>
       {props.collectionInfo.specifications && (
@@ -55,11 +57,13 @@ function StaticInfo(props) {
           </div>
           <div className="spec-tip">
             <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
-            <p className={showAllTips ? "" : "h-8 line-clamp-2"}>
+            <p className={showAllTips ? '' : 'h-8 line-clamp-2'}>
               EVT(Encrypted Variable Token) is a new kind of token type that we can use to replace NFT in metaverse and
               physical world
             </p>
-            <p className="more" onClick={changeShowAllTips}>{showAllTips ? '收起' : 'More'}</p>
+            <p className="more" onClick={changeShowAllTips}>
+              {showAllTips ? '收起' : 'More'}
+            </p>
           </div>
         </div>
       )}
