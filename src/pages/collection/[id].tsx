@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: liukeke liukeke@diynova.com
- * @LastEditTime: 2022-10-09 14:43:23
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-09 17:00:41
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,6 +38,7 @@ function Main() {
   const [isLogin, setIsLogin] = useState(false)
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
+  const [hasAddCalendar, setHasAddCalendar] = useState(false)
 
   const collectionUrl = '/api/collection'
 
@@ -47,7 +48,6 @@ function Main() {
     if (id != undefined) {
       fetchCollectionInfo()
     }
-    checkCalendar()
   }, [isLogin, id])
 
   function fetchCollectionInfo() {
@@ -104,14 +104,18 @@ function Main() {
     })
   }
 
-  function checkCalendar() {
+  function checkCalendar(info) {
     let params = {
       name: 'checkCalendar',
-      data: calendarInfo,
+      data: info,
     }
     postMessage(params, function (data) {
-      if (data != null) {
-        console.log(JSON.stringify(data))
+      if (data != null && data.error_code == 1) {
+        if(data.result['has_add_calendar'] == 1) {
+          setHasAddCalendar(true)
+        } else {
+          setHasAddCalendar(false)
+        }
       }
     })
   }
@@ -185,11 +189,12 @@ function Main() {
       eventLocation: 'Wave',
       start_time: collectionInfo.sell_start_time,
       end_time: collectionInfo.reveals_time,
-      advanceTime: collectionInfo.sell_start_time - 10 * 60,
+      advanceTime: 10, 
       rule: "null",
       collection_id: collectionInfo.id
     }
     setCalendarInfo(info)
+    checkCalendar(info)
   }
 
   function postMessage(params, callback) {
