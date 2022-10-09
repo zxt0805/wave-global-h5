@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 21:06:13
+ * @LastEditTime: 2022-10-09 22:25:44
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -143,7 +143,14 @@ function Main() {
       }
       postMessage(params, function (data) {
         if (data != null) {
-          console.log(JSON.stringify(data))
+          var info = data
+          if (info.error_code == 1) {
+            setIsLogin(true)
+          } else if (info.error_code == 2) {
+            setIsLogin(false)
+          } else {
+            // show error message
+          }
         }
       })
     } else {
