@@ -48,7 +48,7 @@
       @apply text-sm;
       .item {
         @apply mb-3 w-[7.5rem];
-        p {
+        .needTruncate {
           @apply truncate;
         }
         img {
@@ -67,7 +67,17 @@
       .info-content {
         @apply flex-1 text-right text-gray333;
         .item {
-          @apply float-right flex items-center justify-end;
+          @apply float-right flex items-center justify-end relative;
+        }
+        .bubble{
+          @apply absolute right-[-1rem] bottom-0;
+          img{
+            max-width: 13.375rem;
+            @apply w-[13.375rem] h-[7.1875rem];
+          }
+          .bubble-content{
+            @apply absolute left-0 top-0 pt-[1.75rem] px-[1.6rem] text-xs leading-5 break-words w-full h-full text-left;
+          }
         }
       }
       .spec-tip {

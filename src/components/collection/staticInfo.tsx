@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 17:03:44
+ * @LastEditTime: 2022-10-09 18:21:26
  * @FilePath: /wave-global-h5/src/components/index/title.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -11,18 +11,26 @@
  */
 import React, { useEffect, useState } from 'react'
 import { t } from 'i18next'
+import copy from 'copy-to-clipboard';
 
 export default StaticInfo
 
 function StaticInfo(props) {
   const [showAllIntro, setShowAllIntro] = useState(false)
   const [showAllTips, setShowAllTips] = useState(false)
+  const [isShowBubble, setIsShowBubble] = useState(false)
 
   function changeShowAllIntro() {
     setShowAllIntro(!showAllIntro)
   }
   function changeShowAllTips() {
     setShowAllTips(!showAllTips)
+  }
+  function copyAddress(str){
+    copy(str);
+  }
+  function showBubble(val){
+    setIsShowBubble(val)
   }
   return (
     <div className="staticinfo-wrap">
@@ -45,26 +53,30 @@ function StaticInfo(props) {
             </div>
             <div className="info-content">
               <div className="item">
-                <p>{props.collectionInfo.specifications.contract_address}</p>
-                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy" />
+                <p className="needTruncate">{props.collectionInfo.specifications.contract_address}</p>
+                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy"/>
+                {/* onClick={copyAddress(props.collectionInfo.specifications.contract_address)} */}
               </div>
               <p className="item">{props.collectionInfo.specifications.token_standard}</p>
               <p className="item">{props.collectionInfo.specifications.block_chain}</p>
-              <p className="item">
+              <div className="item">
                 {props.collectionInfo.specifications.creator_earnings}
                 <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" />
-              </p>
+                {/* onClick={showBubble(true)} */}
+                <div className="bubble">
+                  <img src="/assets/image/bubble.png" alt="" />
+                  <p className="bubble-content">{t('BUBBLEBEFORE') + ' ' + props.collectionInfo.specifications.creator_earnings + ' ' + t('BUBBLEAFTER')}</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="spec-tip">
             <img src="/assets/image/icon-point.png" alt="" className="icon-point" />
-            <p className={showAllTips ? '' : 'h-8 line-clamp-2'}>
-              EVT(Encrypted Variable Token) is a new kind of token type that we can use to replace NFT in metaverse and
-              physical world
-            </p>
-            <p className="more" onClick={changeShowAllTips}>
+            {/* className={showAllTips ? '' : 'h-8 line-clamp-2'} */}
+            <p>{t('TIPS')}<span className="more">{t('MORE')}</span></p>
+            {/* <p className="more" onClick={changeShowAllTips}>
               {showAllTips ? t('COLLAPSE') : t('MORE')}
-            </p>
+            </p> */}
           </div>
         </div>
       )}

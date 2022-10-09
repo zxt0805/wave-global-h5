@@ -21,5 +21,8 @@
 	"ADDEDTOCALENDAR": "已设置提醒",
 	"CHECKMYASSETS": "查看我的资产",
 	"GOTOTRADE": "去交易",
-	"BUY": "立即购买"
+	"BUY": "立即购买",
+	"TIPS": "EVT(加密可变通证） 是一种新型的通证类型，我们可以用它来替代元宇宙和物理世界中的NFT。",
+	"BUBBLEBEFORE": "每笔交易创作者收取",
+	"BUBBLEAFTER": "的版税"
 }
