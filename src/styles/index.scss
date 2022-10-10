@@ -65,9 +65,9 @@
         @apply float-left flex-none text-gray666;
       }
       .info-content {
-        @apply flex-1 text-right text-gray333;
+        @apply flex-1 text-right text-gray333 flex flex-col items-end;
         .item {
-          @apply float-right flex items-center justify-end relative;
+          @apply flex items-center justify-end relative;
         }
         .bubble{
           @apply absolute right-[-1rem] bottom-0;

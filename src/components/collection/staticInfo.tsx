@@ -1,8 +1,8 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-09 19:53:19
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-09 20:35:51
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -57,7 +57,7 @@ function StaticInfo(props) {
             <div className="info-content">
               <div className="item">
                 <p className="needTruncate">{props.collectionInfo.specifications.contract_address}</p>
-                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy"/>
+                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy" onClick={() => copyAddress(props.collectionInfo.specifications.contract_address)}/>
                 {/* onClick={copyAddress(props.collectionInfo.specifications.contract_address)} */}
               </div>
               <p className="item">{props.collectionInfo.specifications.token_standard}</p>
