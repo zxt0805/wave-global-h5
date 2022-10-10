@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 11:33:44
+ * @LastEditTime: 2022-10-10 16:12:36
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -25,8 +25,8 @@ function StaticInfo(props) {
   function changeShowAllIntro() {
     setShowAllIntro(!showAllIntro)
   }
-  function changeShowAllTips() {
-    setShowAllTips(!showAllTips)
+  function checkMore() {
+    window.open('https://www.newtonproject.org/en/evt/')
   }
   function copyAddress(str) {
     copy(str)
@@ -89,7 +89,7 @@ function StaticInfo(props) {
             {/* className={showAllTips ? '' : 'h-8 line-clamp-2'} */}
             <p>
               {t('TIPS')}
-              <span className="more">{t('MORE')}</span>
+              <span className="more" onClick={checkMore}>{t('MORE')}</span>
             </p>
             {/* <p className="more" onClick={changeShowAllTips}>
               {showAllTips ? t('COLLAPSE') : t('MORE')}
