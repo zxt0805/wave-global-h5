@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 16:44:12
+ * @LastEditTime: 2022-10-10 17:04:54
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,23 +17,24 @@ function HeadImg(props) {
   let { collectionInfo } = props
 
   const [remainSecond, setRemainSecond] = useState(0)
-  let timer
+  let timer, remainTime
 
   useEffect(() => {
-    let remainTime = collectionInfo.sell_start_time - collectionInfo.system_time
+    remainTime = collectionInfo.sell_start_time - collectionInfo.system_time
     setRemainSecond(remainTime)
     if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
-      countDown(remainTime)
+      if (timer) {
+        clearInterval(timer)
+      }
+      console.log('useEffect')
+      countDown()
     }
-  })
+  },[])
 
-  function countDown(time) {
-    if (timer) {
-      clearInterval(timer)
-    }
+  function countDown() {
     timer = setInterval(() => {
-      time = time - 1
-      setRemainSecond(time)
+      remainTime = remainTime - 1
+      setRemainSecond(remainTime)
     }, 1000)
   }
 
@@ -59,7 +60,6 @@ function HeadImg(props) {
 
   function timeJudge() {
     if (collectionInfo.sell_status == 0) {
-      console.log(remainSecond)
       if (remainSecond > 86400) {
         return <div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>
       } else {
@@ -73,7 +73,7 @@ function HeadImg(props) {
   function getTimeStr(timestamp) {
     console.log(timestamp)
     let time = new Date(timestamp * 1000),
-      timeZone = time.getTimezoneOffset() / 60
+      timeZone = (time.getTimezoneOffset()) * (-1) / 60
     return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(
       time.getMinutes()
     )}:${fillZero(time.getSeconds())}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`

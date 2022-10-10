@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 16:12:36
+ * @LastEditTime: 2022-10-10 17:01:35
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -19,7 +19,6 @@ export default StaticInfo
 
 function StaticInfo(props) {
   const [showAllIntro, setShowAllIntro] = useState(false)
-  const [showAllTips, setShowAllTips] = useState(false)
   const [isShowBubble, setIsShowBubble] = useState(false)
 
   function changeShowAllIntro() {
