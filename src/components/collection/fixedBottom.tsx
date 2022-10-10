@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 16:09:48
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 17:13:22
+ * @LastEditTime: 2022-10-10 17:17:54
  * @FilePath: /wave-global-h5/src/components/index/fixBottom.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-09 17:02:42
@@ -24,7 +24,7 @@ function fixedBottom(props) {
       return (
         <div className="fixBottom">
           <div className="statusInfo">{collectionInfo.sell_price}NEW</div>
-          <div className="button" onClick={addToCalendar}>
+          <div className={collectionInfo.sell_start_time - collectionInfo.system_time < 600 ? 'button' : 'button button-disable'} onClick={addToCalendar}>
             {t('ADDTOCALENDAR')}
           </div>
         </div>
