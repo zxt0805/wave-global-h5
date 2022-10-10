@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-10 14:10:03
+ * @LastEditTime: 2022-10-10 14:41:18
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -31,10 +31,9 @@ function Home() {
 
 function Main() {
   const { t, i18n } = useTranslation();
-  const isDebug = IS_DEBUG
+  const isDebug = IS_DEBUG == "true" ? true : false;
   const router = useRouter()
   const { id } = router.query
-
   const [isLogin, setIsLogin] = useState(false)
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
@@ -244,6 +243,14 @@ function Main() {
     }
   }
 
+  function debugSection() {
+    if(isDebug) {
+      return <p>{isDebug.toString()}:{handlerData}</p>
+    } else {
+      return <></>
+    }
+  }
+
   if (collectionInfo == null) {
     return (
       <div className="skeleton-wap">
@@ -256,7 +263,7 @@ function Main() {
       <div className="index-wrap">
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
-        {isDebug && <p>{handlerData}</p>}
+        {debugSection()}
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         <div className="staticinfo-wrap">
