@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 17:04:54
+ * @LastEditTime: 2022-10-10 17:14:05
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,12 +49,10 @@ function HeadImg(props) {
   function statusJudge() {
     if (collectionInfo.sell_status == 0) {
       return <div className="status-onimg">{t('UPCOMMINGDROP')}</div>
+    } else if (collectionInfo.sell_status == 1) {
+      return <div className="status-onimg">{t('LIVEDROP')}</div>
     } else {
-      if (collectionInfo.box_total == collectionInfo.sold_quantity) {
-        return <div className="status-onimg disabled">{t('SOLDOUT')}</div>
-      } else {
-        return <div className="status-onimg">{t('LIVEDROP')}</div>
-      }
+      return <div className="status-onimg disabled">{t('SOLDOUT')}</div>
     }
   }
 
