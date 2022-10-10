@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-09 17:05:43
+ * @LastEditTime: 2022-10-10 16:35:06
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,9 +21,9 @@ function HeadImg(props) {
 
   useEffect(() => {
     let remainTime = collectionInfo.sell_start_time - collectionInfo.system_time
-    console.log(remainTime)
-
+    console.log(remainTime, remainTime <= 86400)
     if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
+      console.log(remainTime)
       setremainSecond(remainTime)
       countDown(remainTime)
     }
@@ -62,7 +62,8 @@ function HeadImg(props) {
   function timeJudge() {
     if (collectionInfo.sell_status == 0) {
       // TODO: 缺少当前时间戳字段判断展示倒计时/发售时间
-      if (remainSecond > 86400) {
+      console.log(remainSecond)
+      if (collectionInfo.sell_start_time - collectionInfo.system_time > 86400) {
         return <div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>
       } else {
         return <div className="time-onimg">{t('STARTSIN') + ' ' + calculateCountdown(remainSecond)}</div>
@@ -73,6 +74,7 @@ function HeadImg(props) {
   }
 
   function getTimeStr(timestamp) {
+    console.log(timestamp)
     let time = new Date(timestamp * 1000),
       timeZone = time.getTimezoneOffset() / 60
     return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(
