@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 10:16:25
+ * @LastEditTime: 2022-10-10 11:33:44
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -12,6 +12,8 @@
 import React, { useEffect, useState } from 'react'
 import { t } from 'i18next'
 import copy from 'copy-to-clipboard'
+
+import { message } from 'antd';
 
 export default StaticInfo
 
@@ -28,6 +30,7 @@ function StaticInfo(props) {
   }
   function copyAddress(str) {
     copy(str)
+    message.success(t('COPYSUCCESS'));
   }
   function showBubble() {
     setIsShowBubble(true)
