@@ -9,7 +9,7 @@
 import 'styles/style.scss'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
-import "react-i18next/i18n";
+import 'react-i18next/i18n'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

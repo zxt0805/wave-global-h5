@@ -11,7 +11,7 @@
  */
 // import React, { useEffect, useState } from 'react'
 
-import { t } from "i18next"
+import { t } from 'i18next'
 
 export default fixedBottom
 
@@ -60,9 +60,5 @@ function fixedBottom(props) {
   }
 
   // return saleStatusChange()
-  return (
-    <div className="fixBottom flex-col">
-      {saleStatusChange()}
-    </div>
-  )
+  return <div className="fixBottom flex-col">{saleStatusChange()}</div>
 }

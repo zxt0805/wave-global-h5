@@ -16,21 +16,21 @@ export default HeadImg
 function HeadImg(props) {
   let { collectionInfo } = props
 
-  const [remainSecond, setremainSecond] = useState(0);
+  const [remainSecond, setremainSecond] = useState(0)
   let timer
 
   useEffect(() => {
-    let remainTime = collectionInfo.sell_start_time - collectionInfo.system_time;
+    let remainTime = collectionInfo.sell_start_time - collectionInfo.system_time
     console.log(remainTime)
 
-    if(collectionInfo.sell_status == 0 && remainTime <= 86400) {
-      setremainSecond(remainTime);
+    if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
+      setremainSecond(remainTime)
       countDown(remainTime)
     }
   }, [0])
 
   function countDown(time) {
-    if(timer){
+    if (timer) {
       clearInterval(timer)
     }
     timer = setInterval(() => {
@@ -40,21 +40,21 @@ function HeadImg(props) {
   }
 
   function calculateCountdown(remain) {
-    let hrs = Math.floor(remain / 3600) || 0;
-    remain = remain % 3600;
+    let hrs = Math.floor(remain / 3600) || 0
+    remain = remain % 3600
     let min = Math.floor(remain / 60) || 0,
-        sec = remain % 60
+      sec = remain % 60
     return `${fillZero(hrs)}:${fillZero(min)}:${fillZero(sec)}`
   }
 
   function statusJudge() {
     if (collectionInfo.sell_status == 0) {
-      return <div className="status-onimg">{t("UPCOMMINGDROP")}</div>
+      return <div className="status-onimg">{t('UPCOMMINGDROP')}</div>
     } else {
       if (collectionInfo.box_total == collectionInfo.sold_quantity) {
-        return <div className="status-onimg disabled">{t("SOLDOUT")}</div>
+        return <div className="status-onimg disabled">{t('SOLDOUT')}</div>
       } else {
-        return <div className="status-onimg">{t("LIVEDROP")}</div>
+        return <div className="status-onimg">{t('LIVEDROP')}</div>
       }
     }
   }
@@ -63,12 +63,12 @@ function HeadImg(props) {
     if (collectionInfo.sell_status == 0) {
       // TODO: 缺少当前时间戳字段判断展示倒计时/发售时间
       if (remainSecond > 86400) {
-        return (<div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>)
+        return <div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>
       } else {
-        return (<div className="time-onimg">{t('STARTSIN') + ' ' + calculateCountdown(remainSecond)}</div>)
+        return <div className="time-onimg">{t('STARTSIN') + ' ' + calculateCountdown(remainSecond)}</div>
       }
     } else {
-      return (<div className="time-onimg">{t('REVEALSAT') + ' ' + getTimeStr(collectionInfo.reveals_time)}</div>)
+      return <div className="time-onimg">{t('REVEALSAT') + ' ' + getTimeStr(collectionInfo.reveals_time)}</div>
     }
   }
 
