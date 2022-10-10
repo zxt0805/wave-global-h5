@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-10 11:43:08
+ * @LastEditTime: 2022-10-10 14:10:03
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,6 +20,7 @@ import { useRouter } from 'next/router'
 import { Skeleton } from 'antd'
 import { CollectionInfo } from 'model/collection_model'
 import { useTranslation } from 'react-i18next'
+import { IS_DEBUG } from 'constants/settings'
 
 export default Home
 
@@ -30,7 +31,7 @@ function Home() {
 
 function Main() {
   const { t, i18n } = useTranslation();
-
+  const isDebug = IS_DEBUG
   const router = useRouter()
   const { id } = router.query
 
@@ -38,12 +39,12 @@ function Main() {
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
+  const [handlerData, setHandlerData] = useState("")
   
 
   const collectionUrl = '/api/collection'
 
   useEffect(() => {
-    console.log("init");
     requestLanguage()
     requestUserInfo()
     if (id != undefined) {
@@ -78,8 +79,9 @@ function Main() {
       data: {},
     }
     postMessage(params, function (data) {
+      setHandlerData(handlerData + "\r\n request user: " + JSON.stringify(data));
       if (data != null) {
-        var info = data
+        var info = data;
         if (info.error_code == 1) {
           setIsLogin(true)
         } else if (info.error_code == 2) {
@@ -92,13 +94,13 @@ function Main() {
   }
 
   function requestAddCalendar() {
-    console.log('call requestAddCalendar')
-
     let params = {
       name: 'requestCalendar',
       data: calendarInfo,
     }
     postMessage(params, function (data) {
+      setHandlerData(handlerData + "\r\n requestCalendar: " + JSON.stringify(data));
+
       if (data != null) {
         console.log(JSON.stringify(data))
       }
@@ -111,6 +113,8 @@ function Main() {
       data: info,
     }
     postMessage(params, function (data) {
+      setHandlerData(handlerData + "\r\n checkCalendar: " + JSON.stringify(data));
+
       if (data != null && data.error_code == 1) {
         if (data.result['has_add_calendar'] == 1) {
           setHasAddCalendar(true)
@@ -127,6 +131,7 @@ function Main() {
       data: {},
     }
     postMessage(params, function (data) {
+      setHandlerData(handlerData + "\r\n requestLanguage: " + JSON.stringify(data));
       if (data != null && data.error_code == 1) {
         i18n.changeLanguage(JSON.parse(data.result)['language'])
       }
@@ -143,6 +148,8 @@ function Main() {
         },
       }
       postMessage(params, function (data) {
+        setHandlerData(handlerData + "\r\n requestRoute: " + JSON.stringify(data));
+
         if (data != null) {
           var info = data
           if (info.error_code == 1) {
@@ -164,6 +171,8 @@ function Main() {
         },
       }
       postMessage(params, function (data) {
+        setHandlerData(handlerData + "\r\n requestPayOrder: " + JSON.stringify(data));
+
         if (data != null) {
           console.log(JSON.stringify(data))
         }
@@ -247,6 +256,7 @@ function Main() {
       <div className="index-wrap">
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
+        {isDebug && <p>{handlerData}</p>}
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         <div className="staticinfo-wrap">
