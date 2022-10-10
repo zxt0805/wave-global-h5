@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-10 14:41:18
+ * @LastEditTime: 2022-10-10 15:31:21
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,8 +38,6 @@ function Main() {
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
-  const [handlerData, setHandlerData] = useState("")
-  
 
   const collectionUrl = '/api/collection'
 
@@ -78,7 +76,7 @@ function Main() {
       data: {},
     }
     postMessage(params, function (data) {
-      setHandlerData(handlerData + "\r\n request user: " + JSON.stringify(data));
+      console.log("\r\n request user: " + JSON.stringify(data));
       if (data != null) {
         var info = data;
         if (info.error_code == 1) {
@@ -98,7 +96,7 @@ function Main() {
       data: calendarInfo,
     }
     postMessage(params, function (data) {
-      setHandlerData(handlerData + "\r\n requestCalendar: " + JSON.stringify(data));
+      console.log("\r\n requestCalendar: " + JSON.stringify(data));
 
       if (data != null) {
         console.log(JSON.stringify(data))
@@ -112,7 +110,7 @@ function Main() {
       data: info,
     }
     postMessage(params, function (data) {
-      setHandlerData(handlerData + "\r\n checkCalendar: " + JSON.stringify(data));
+      console.log("\r\n checkCalendar: " + JSON.stringify(data));
 
       if (data != null && data.error_code == 1) {
         if (data.result['has_add_calendar'] == 1) {
@@ -125,12 +123,14 @@ function Main() {
   }
 
   function requestLanguage() {
+    console.log("request language");
+    
     let params = {
       name: 'requestLanguage',
       data: {},
     }
     postMessage(params, function (data) {
-      setHandlerData(handlerData + "\r\n requestLanguage: " + JSON.stringify(data));
+      console.log("\r\n requestLanguage: " + JSON.stringify(data));
       if (data != null && data.error_code == 1) {
         i18n.changeLanguage(JSON.parse(data.result)['language'])
       }
@@ -147,7 +147,7 @@ function Main() {
         },
       }
       postMessage(params, function (data) {
-        setHandlerData(handlerData + "\r\n requestRoute: " + JSON.stringify(data));
+        console.log("\r\n requestRoute: " + JSON.stringify(data));
 
         if (data != null) {
           var info = data
@@ -169,8 +169,9 @@ function Main() {
           to_address: collectionInfo.specifications.contract_address,
         },
       }
+      
       postMessage(params, function (data) {
-        setHandlerData(handlerData + "\r\n requestPayOrder: " + JSON.stringify(data));
+        console.debug("\r\n requestPayOrder: " + JSON.stringify(data));
 
         if (data != null) {
           console.log(JSON.stringify(data))
@@ -243,13 +244,6 @@ function Main() {
     }
   }
 
-  function debugSection() {
-    if(isDebug) {
-      return <p>{isDebug.toString()}:{handlerData}</p>
-    } else {
-      return <></>
-    }
-  }
 
   if (collectionInfo == null) {
     return (
@@ -263,7 +257,6 @@ function Main() {
       <div className="index-wrap">
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
-        {debugSection()}
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         <div className="staticinfo-wrap">
