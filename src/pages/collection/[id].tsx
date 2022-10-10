@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-10 15:31:21
+ * @LastEditTime: 2022-10-10 16:36:42
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,6 +38,8 @@ function Main() {
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
+  const [userInfo, setUserInfo] = useState({})
+  const [language, setLanguage] = useState("en")
 
   const collectionUrl = '/api/collection'
 
@@ -47,7 +49,7 @@ function Main() {
     if (id != undefined) {
       fetchCollectionInfo()
     }
-  }, [id])
+  }, [id, userInfo, language])
 
 
   function fetchCollectionInfo() {
@@ -138,46 +140,22 @@ function Main() {
   }
 
   function requestPayOrder() {
-    if (!isLogin) {
-      let params = {
-        name: 'requestRoute',
-        data: {
-          path: '/login/',
-          params: {},
-        },
-      }
-      postMessage(params, function (data) {
-        console.log("\r\n requestRoute: " + JSON.stringify(data));
-
-        if (data != null) {
-          var info = data
-          if (info.error_code == 1) {
-            setIsLogin(true)
-          } else if (info.error_code == 2) {
-            setIsLogin(false)
-          } else {
-            // show error message
-          }
-        }
-      })
-    } else {
-      let params = {
-        name: 'requestPayOrder',
-        data: {
-          collection_id: collectionInfo.id.toString(),
-          price: collectionInfo.sell_price,
-          to_address: collectionInfo.specifications.contract_address,
-        },
-      }
-      
-      postMessage(params, function (data) {
-        console.debug("\r\n requestPayOrder: " + JSON.stringify(data));
-
-        if (data != null) {
-          console.log(JSON.stringify(data))
-        }
-      })
+    let params = {
+      name: 'requestPayOrder',
+      data: {
+        collection_id: collectionInfo.id.toString(),
+        price: collectionInfo.sell_price,
+        to_address: collectionInfo.specifications.contract_address,
+      },
     }
+    
+    postMessage(params, function (data) {
+      console.debug("\r\n requestPayOrder: " + JSON.stringify(data));
+
+      if (data != null) {
+        console.log(JSON.stringify(data))
+      }
+    })
   }
 
   function gotoTrade() {
