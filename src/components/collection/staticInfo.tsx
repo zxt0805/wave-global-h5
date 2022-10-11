@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-11 15:35:11
+ * @LastEditTime: 2022-10-11 16:40:37
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -41,7 +41,7 @@ function StaticInfo(props) {
     <div className="staticinfo-wrap">
       <p className="title">{t('INTRODUCTION')}</p>
       <div className="content-wrap">
-        <p className={showAllIntro ? '' : 'h-10 text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
+        <p className={showAllIntro ? '' : 'h-[3rem] text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
         <p className="more" onClick={changeShowAllIntro}>
           {showAllIntro ? t('COLLAPSE') : t('MORE')}
         </p>
