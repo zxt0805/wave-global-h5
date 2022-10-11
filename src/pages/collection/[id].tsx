@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-11 11:33:03
+ * @LastEditTime: 2022-10-11 14:07:53
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,6 +35,7 @@ function Main() {
   const router = useRouter()
   const { id } = router.query
   const [isLogin, setIsLogin] = useState(false)
+  const [isInApp, setIsInApp] = useState(false)
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
@@ -44,6 +45,8 @@ function Main() {
   const collectionUrl = '/api/collection'
 
   useEffect(() => {
+    let list = navigator.userAgent.split('///');
+    setIsInApp(list.length > 1 ? true : false)
     requestLanguage()
     requestUserInfo()
     if (id != undefined) {
@@ -126,8 +129,6 @@ function Main() {
   }
 
   function requestLanguage() {
-    console.log("request language");
-    
     let params = {
       name: 'requestLanguage',
       data: {},
@@ -263,6 +264,7 @@ function Main() {
         <FixBottom
           hasAddCalendar={hasAddCalendar}
           collectionInfo={collectionInfo}
+          isInApp={isInApp}
           addToCalendar={() => requestAddCalendar()}
           payOrder={() => requestPayOrder()}
           gotoTrade={() => gotoTrade()}
