@@ -29,7 +29,7 @@ function HeadImg(props) {
       console.log('useEffect')
       countDown()
     }
-  },[])
+  }, [])
 
   function countDown() {
     timer = setInterval(() => {
@@ -60,12 +60,12 @@ function HeadImg(props) {
     if (collectionInfo.sell_status == 0) {
       if (remainSecond > 86400) {
         return <div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>
-      } else if(remainSecond > 0) {
+      } else if (remainSecond > 0) {
         return <div className="time-onimg">{t('STARTSIN') + ' ' + calculateCountdown(remainSecond)}</div>
       } else {
         return <></>
       }
-    } else if(collectionInfo.sell_status == 2) {
+    } else if (collectionInfo.sell_status == 2) {
       return <div className="time-onimg">{t('REVEALSAT') + ' ' + getTimeStr(collectionInfo.reveals_time)}</div>
     } else {
       return <></>
@@ -74,7 +74,7 @@ function HeadImg(props) {
 
   function getTimeStr(timestamp) {
     let time = new Date(timestamp * 1000),
-      timeZone = (time.getTimezoneOffset()) * (-1) / 60
+      timeZone = (time.getTimezoneOffset() * -1) / 60
     return `${fillZero(time.getMonth() + 1)}.${fillZero(time.getDate())} ${fillZero(time.getHours())}:${fillZero(
       time.getMinutes()
     )}:${fillZero(time.getSeconds())}(UTC${timeZone > 0 ? '+' + timeZone : timeZone})`
