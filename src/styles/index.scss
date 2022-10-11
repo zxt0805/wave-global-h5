@@ -92,9 +92,9 @@
     }
   }
   .license {
-    @apply flex justify-between text-lg font-bold;
+    @apply flex justify-between items-center text-lg font-bold;
     img {
-      @apply h-5 w-[1.1875rem];
+      @apply h-[1.0625rem] w-[1.0625rem];
     }
   }
   .fixBottom {

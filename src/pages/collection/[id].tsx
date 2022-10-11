@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-10 17:48:58
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-11 11:33:03
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -258,7 +258,7 @@ function Main() {
         </div>
         <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
           <span>{t('LICENSE')}</span>
-          <img src="/assets/image/icon_arrow.png" alt="" />
+          <img src="/assets/image/icon-arrow.png" alt="" />
         </a>
         <FixBottom
           hasAddCalendar={hasAddCalendar}
