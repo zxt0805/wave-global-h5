@@ -37,6 +37,7 @@
     @apply border-t-8 border-grayf9 px-4 py-5;
     .title {
       @apply mb-4 text-lg font-bold text-gray333;
+      font-family: 'Avenir Next' !important;
     }
     .title.introduction {
       @apply mb-3;
