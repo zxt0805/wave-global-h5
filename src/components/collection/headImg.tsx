@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-10 17:14:05
+ * @LastEditTime: 2022-10-11 10:59:06
  * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -60,11 +60,15 @@ function HeadImg(props) {
     if (collectionInfo.sell_status == 0) {
       if (remainSecond > 86400) {
         return <div className="time-onimg">{t('STARTSAT') + ' ' + getTimeStr(collectionInfo.sell_start_time)}</div>
-      } else {
+      } else if(remainSecond > 0) {
         return <div className="time-onimg">{t('STARTSIN') + ' ' + calculateCountdown(remainSecond)}</div>
+      } else {
+        return <></>
       }
-    } else {
+    } else if(collectionInfo.sell_status == 2) {
       return <div className="time-onimg">{t('REVEALSAT') + ' ' + getTimeStr(collectionInfo.reveals_time)}</div>
+    } else {
+      return <></>
     }
   }
 
