@@ -1,5 +1,5 @@
 .index-wrap {
-  @apply bg-white pb-[5rem] font-medium;
+  @apply bg-white font-medium;
   .head-img {
     @apply relative p-4 text-white;
     .time-onimg {
@@ -95,7 +95,7 @@
     }
   }
   .license {
-    @apply flex items-center justify-between text-lg font-bold;
+    @apply flex items-center justify-between text-lg font-bold pb-28;;
     img {
       @apply h-[1.0625rem] w-[1.0625rem];
     }
