@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-11 16:49:55
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-11 17:23:50
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -103,10 +103,11 @@ function Main() {
       data: calendarInfo,
     }
     postMessage(params, function (data) {
-      console.log('\r\n requestCalendar: ' + JSON.stringify(data))
-
-      if (data != null) {
-        console.log(JSON.stringify(data))
+      console.log("\r\n requestCalendar: " + JSON.stringify(data));
+      if (data != null && data.error_code == 1) {
+          setHasAddCalendar(true)
+      } else {
+          setHasAddCalendar(false)
       }
     })
   }
