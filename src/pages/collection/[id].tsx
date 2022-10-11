@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-11 16:35:41
+ * @LastEditTime: 2022-10-11 16:49:55
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -209,7 +209,7 @@ function Main() {
 
   function initCalendarInfo(collectionInfo) {
     const info = {
-      title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      title: t('WAVE_PLATFORM_EVT') + ` [${collectionInfo.name}] ` + t('COMMINIG_SOON'),
       description: collectionInfo.description,
       eventLocation: 'Wave',
       start_time: collectionInfo.sell_start_time,
