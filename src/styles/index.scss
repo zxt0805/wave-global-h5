@@ -1,5 +1,5 @@
 .index-wrap {
-  @apply bg-white pb-28;
+  @apply bg-white pb-28 font-medium;
   .head-img {
     @apply relative p-4 text-white;
     .time-onimg {
@@ -98,7 +98,7 @@
     }
   }
   .fixBottom {
-    @apply fixed left-0 bottom-0 flex w-full items-center justify-between border-t-[1px] border-grayef  bg-white p-4 p-2 text-[1.375rem] font-bold text-greenDark;
+    @apply fixed left-0 bottom-0 flex w-full items-center justify-between border-t-[1px] border-grayef  bg-white p-4 text-[1.375rem] font-bold text-greenDark;
     .end {
       @apply text-gray999;
     }
