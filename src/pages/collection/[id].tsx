@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-11 14:48:44
+ * @LastEditTime: 2022-10-11 15:04:18
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -250,6 +250,7 @@ function Main() {
   } else {
     return (
       <div className="index-wrap">
+        <div className="hidden"><img src={collectionInfo.image} alt="" /></div>
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
         <BaseInfo collectionInfo={collectionInfo} />
