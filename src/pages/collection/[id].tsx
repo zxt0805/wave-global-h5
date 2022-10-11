@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-11 15:06:31
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-11 15:30:20
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -265,6 +265,7 @@ function Main() {
   } else {
     return (
       <div className="index-wrap">
+        <div className='hidden'><img alt='logo' src='/assets/image/logo.png'/></div>
         <div className="hidden"><img src={collectionInfo.image} alt="" /></div>
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
