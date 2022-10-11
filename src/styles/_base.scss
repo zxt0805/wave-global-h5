@@ -45,11 +45,11 @@ p {
 }
 body {
   @apply bg-white;
-  font-family: 'Avenir Next';
+  font-family: 'Avenir Next' !important;
 }
 
 h2 {
-  font-family: 'Roboto-Medium';
+  font-family: 'Roboto-Medium'!important;
 }
 
 .container {
