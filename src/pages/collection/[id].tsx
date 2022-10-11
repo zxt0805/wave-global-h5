@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: liukeke liukeke@diynova.com
- * @LastEditTime: 2022-10-11 16:03:24
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-11 16:35:41
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -120,7 +120,7 @@ function Main() {
       console.log("\r\n checkCalendar: " + JSON.stringify(data));
 
       if (data != null && data.error_code == 1) {
-        if (data.result['has_add_calendar'] == 1) {
+        if (JSON.parse(data.result)['has_add_calendar'] == 1) {
           setHasAddCalendar(true)
         } else {
           setHasAddCalendar(false)
