@@ -1,8 +1,8 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-11 16:40:37
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-11 17:16:06
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react'
 import { t } from 'i18next'
 import copy from 'copy-to-clipboard'
 
-import { message } from 'antd';
+import { message } from 'antd'
 
 export default StaticInfo
 
@@ -29,7 +29,7 @@ function StaticInfo(props) {
   }
   function copyAddress(str) {
     copy(str)
-    message.success(t('COPYSUCCESS'));
+    message.success(t('COPYSUCCESS'))
   }
   function showBubble() {
     setIsShowBubble(true)
@@ -39,7 +39,7 @@ function StaticInfo(props) {
   }
   return (
     <div className="staticinfo-wrap">
-      <p className="title">{t('INTRODUCTION')}</p>
+      <p className="title introduction">{t('INTRODUCTION')}</p>
       <div className="content-wrap">
         <p className={showAllIntro ? '' : 'h-[3rem] text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
         <p className="more" onClick={changeShowAllIntro}>
@@ -59,7 +59,12 @@ function StaticInfo(props) {
             <div className="info-content">
               <div className="item">
                 <p className="needTruncate">{props.collectionInfo.specifications.contract_address}</p>
-                <img src="/assets/image/icon-copy.png" alt="" className="icon-copy" onClick={() => copyAddress(props.collectionInfo.specifications.contract_address)}/>
+                <img
+                  src="/assets/image/icon-copy.png"
+                  alt=""
+                  className="icon-copy"
+                  onClick={() => copyAddress(props.collectionInfo.specifications.contract_address)}
+                />
                 {/* onClick={copyAddress(props.collectionInfo.specifications.contract_address)} */}
               </div>
               <p className="item">{props.collectionInfo.specifications.token_standard}</p>
@@ -88,7 +93,9 @@ function StaticInfo(props) {
             {/* className={showAllTips ? '' : 'h-8 line-clamp-2'} */}
             <p>
               {t('TIPS')}
-              <a className="more" href="https://www.newtonproject.org/en/evt/">{t('MORE')}</a>
+              <a className="more" href="https://www.newtonproject.org/en/evt/">
+                {t('MORE')}
+              </a>
             </p>
             {/* <p className="more" onClick={changeShowAllTips}>
               {showAllTips ? t('COLLAPSE') : t('MORE')}

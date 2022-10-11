@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-11 16:35:41
+ * @LastEditors: liukeke liukeke@diynova.com
+ * @LastEditTime: 2022-10-11 17:23:50
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -32,8 +32,8 @@ function Home() {
 }
 
 function Main() {
-  const { t, i18n } = useTranslation();
-  const isDebug = IS_DEBUG == "true" ? true : false;
+  const { t, i18n } = useTranslation()
+  const isDebug = IS_DEBUG == 'true' ? true : false
   const router = useRouter()
   const { id } = router.query
   const [isLogin, setIsLogin] = useState(false)
@@ -42,7 +42,7 @@ function Main() {
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
   const [userInfo, setUserInfo] = useState({})
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState('en')
 
   const collectionUrl = '/api/collection'
 
@@ -83,9 +83,9 @@ function Main() {
       data: {},
     }
     postMessage(params, function (data) {
-      console.log("\r\n request user: " + JSON.stringify(data));
+      console.log('\r\n request user: ' + JSON.stringify(data))
       if (data != null) {
-        var info = data;
+        var info = data
         if (info.error_code == 1) {
           setIsLogin(true)
         } else if (info.error_code == 2) {
@@ -104,9 +104,10 @@ function Main() {
     }
     postMessage(params, function (data) {
       console.log("\r\n requestCalendar: " + JSON.stringify(data));
-
-      if (data != null) {
-        console.log(JSON.stringify(data))
+      if (data != null && data.error_code == 1) {
+          setHasAddCalendar(true)
+      } else {
+          setHasAddCalendar(false)
       }
     })
   }
@@ -117,7 +118,7 @@ function Main() {
       data: info,
     }
     postMessage(params, function (data) {
-      console.log("\r\n checkCalendar: " + JSON.stringify(data));
+      console.log('\r\n checkCalendar: ' + JSON.stringify(data))
 
       if (data != null && data.error_code == 1) {
         if (JSON.parse(data.result)['has_add_calendar'] == 1) {
@@ -135,7 +136,7 @@ function Main() {
       data: {},
     }
     postMessage(params, function (data) {
-      console.log("\r\n requestLanguage: " + JSON.stringify(data));
+      console.log('\r\n requestLanguage: ' + JSON.stringify(data))
       if (data != null && data.error_code == 1) {
         i18n.changeLanguage(JSON.parse(data.result)['language'])
       }
@@ -151,9 +152,9 @@ function Main() {
         to_address: collectionInfo.specifications.contract_address,
       },
     }
-    
+
     postMessage(params, function (data) {
-      console.debug("\r\n requestPayOrder: " + JSON.stringify(data));
+      console.debug('\r\n requestPayOrder: ' + JSON.stringify(data))
 
       if (data != null) {
         console.log(JSON.stringify(data))
@@ -209,7 +210,7 @@ function Main() {
 
   function initCalendarInfo(collectionInfo) {
     const info = {
-      title: 'Wave平台EVT【胜利】开售，快去看看吧！',
+      title: t('WAVE_PLATFORM_EVT') + ` [${collectionInfo.name}] ` + t('COMMINIG_SOON'),
       description: collectionInfo.description,
       eventLocation: 'Wave',
       start_time: collectionInfo.sell_start_time,
@@ -254,7 +255,6 @@ function Main() {
     }
   }
 
-
   if (collectionInfo == null) {
     return (
       <div className="skeleton-wap">
@@ -265,7 +265,9 @@ function Main() {
   } else {
     return (
       <div className="index-wrap">
-        <div className='hidden'><img alt='logo' src='/assets/image/logo.png' /></div>
+        <div className="hidden">
+          <img alt="logo" src="/assets/image/logo.png" />
+        </div>
         {/* {t("title")} */}
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
         <BaseInfo collectionInfo={collectionInfo} />

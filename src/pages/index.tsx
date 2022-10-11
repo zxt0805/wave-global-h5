@@ -18,8 +18,12 @@ function Home() {
 }
 
 function Main() {
-  return <>
-    <div className='hidden'><img alt='logo' src='/assets/image/logo.png' /></div>
-    Hello Wave
-  </>
+  return (
+    <>
+      <div className="hidden">
+        <img alt="logo" src="/assets/image/logo.png" />
+      </div>
+      Hello Wave
+    </>
+  )
 }

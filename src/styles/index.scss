@@ -21,7 +21,7 @@
       }
     }
     .nums {
-      @apply mt-4 overflow-hidden;
+      @apply mt-6 overflow-hidden;
       .nums-item {
         @apply float-left mr-4 overflow-hidden rounded-sm  text-xs;
         .tip {
@@ -37,6 +37,9 @@
     @apply border-t-8 border-grayf9 px-4 py-5;
     .title {
       @apply mb-4 text-lg font-bold text-gray333;
+    }
+    .title.introduction {
+      @apply mb-3;
     }
     .content-wrap {
       @apply mb-7  text-sm leading-6;
@@ -62,12 +65,12 @@
         }
       }
       .info-title {
-        @apply float-left flex-none text-gray666 leading-4;
+        @apply float-left flex-none leading-4 text-gray666;
       }
       .info-content {
-        @apply flex-1 text-right text-gray333 flex flex-col items-end leading-4;
+        @apply flex flex-1 flex-col items-end text-right leading-4 text-gray333;
         .item {
-          @apply flex items-center justify-end relative;
+          @apply relative flex items-center justify-end;
         }
         .bubble {
           @apply absolute right-[-1rem] bottom-0;
@@ -81,7 +84,7 @@
         }
       }
       .spec-tip {
-        @apply relative mt-3 pl-[0.625rem] text-xs leading-5 text-gray999;
+        @apply relative pl-[0.625rem] text-xs leading-5 text-gray999;
         .icon-point {
           @apply absolute left-0 top-1 h-[0.375rem] w-[0.375rem];
         }
@@ -92,7 +95,7 @@
     }
   }
   .license {
-    @apply flex justify-between items-center text-lg font-bold;
+    @apply flex items-center justify-between text-lg font-bold;
     img {
       @apply h-[1.0625rem] w-[1.0625rem];
     }
