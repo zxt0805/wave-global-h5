@@ -2,9 +2,10 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 16:17:14
+ * @LastEditTime: 2022-10-12 17:18:00
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
+ * @LastEditTime: 2022-10-12 17:10:31
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
