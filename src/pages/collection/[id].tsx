@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 19:14:23
+ * @LastEditTime: 2022-10-12 19:15:30
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditTime: 2022-10-12 17:10:31
@@ -233,10 +233,10 @@ function Main(props) {
   function checkIsInApp() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       // @ts-ignore
-      if (window && window.flutter_inappwebview) {
+      if (window && (window.flutter_inappwebview || window.webkit)) {
         setIsInApp(true)
         // @ts-ignore
-      } else if (window && window.webkit) {
+      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
         setIsInApp(true)
       } else {
         setIsInApp(false)
@@ -252,7 +252,7 @@ function Main(props) {
         // @ts-ignore
         window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
         // @ts-ignore
-      } else if (window && window.webkit) {
+      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
         console.log('send info ios')
         // @ts-ignore, add ios callback
         window.webkit.messageHandlers[handler].postMessage(params)
