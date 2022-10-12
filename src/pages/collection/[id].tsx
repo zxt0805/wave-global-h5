@@ -1,11 +1,6 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 19:15:30
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-12 15:21:47
- * @LastEditTime: 2022-10-12 17:10:31
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -233,7 +228,7 @@ function Main(props) {
   function checkIsInApp() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       // @ts-ignore
-      if (window && (window.flutter_inappwebview || window.webkit)) {
+      if (window && window.flutter_inappwebview) {
         setIsInApp(true)
         // @ts-ignore
       } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
