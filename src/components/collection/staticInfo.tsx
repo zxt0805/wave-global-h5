@@ -1,8 +1,8 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: liukeke liukeke@diynova.com
- * @LastEditTime: 2022-10-11 17:16:06
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-12 11:22:08
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -31,14 +31,15 @@ function StaticInfo(props) {
     copy(str)
     message.success(t('COPYSUCCESS'))
   }
-  function showBubble() {
-    setIsShowBubble(true)
-    setTimeout(() => {
-      setIsShowBubble(false)
-    }, 1000)
+  function showBubble(val, event) {
+    event = event || window.event
+    if(val){
+      event.stopPropagation()
+    }
+    setIsShowBubble(val)
   }
   return (
-    <div className="staticinfo-wrap">
+    <div className="staticinfo-wrap"  onClick={e => showBubble(false, e)}>
       <p className="title introduction">{t('INTRODUCTION')}</p>
       <div className="content-wrap">
         <p className={showAllIntro ? '' : 'h-[3rem] text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
@@ -71,9 +72,9 @@ function StaticInfo(props) {
               <p className="item">{props.collectionInfo.specifications.block_chain}</p>
               <div className="item">
                 {props.collectionInfo.specifications.creator_earnings}
-                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={() => showBubble()} />
+                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={e => showBubble(true, e)} />
                 {/* onClick={showBubble(true)} */}
-                {isShowBubble && (
+                {/* {isShowBubble && ( */}
                   <div className="bubble">
                     <img src="/assets/image/bubble.png" alt="" />
                     <p className="bubble-content">
@@ -84,7 +85,7 @@ function StaticInfo(props) {
                         t('BUBBLEAFTER')}
                     </p>
                   </div>
-                )}
+                {/* )} */}
               </div>
             </div>
           </div>
