@@ -1,8 +1,13 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 19:05:28
+<<<<<<< HEAD
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-12 19:12:58
+=======
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-12 19:11:53
+>>>>>>> fe2f63b (fix: bug for open in wechat)
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditTime: 2022-10-12 17:10:31
@@ -232,13 +237,11 @@ function Main(props) {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       // @ts-ignore
       if (window && (window.flutter_inappwebview || window.webkit)) {
-        console.log(1111)
         setIsInApp(true)
-        requestLanguage()
-        requestUserInfo()
         // @ts-ignore
+      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
+        setIsInApp(true)
       } else {
-        console.log(222)
         setIsInApp(false)
       }
     }
@@ -252,7 +255,7 @@ function Main(props) {
         // @ts-ignore
         window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
         // @ts-ignore
-      } else if (window && window.webkit) {
+      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
         console.log('send info ios')
         // @ts-ignore, add ios callback
         window.webkit.messageHandlers[handler].postMessage(params)
