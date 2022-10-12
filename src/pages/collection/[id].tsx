@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 19:15:30
+ * @LastEditTime: 2022-10-12 20:25:32
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditTime: 2022-10-12 17:10:31
@@ -50,10 +50,15 @@ function Main(props) {
   const [language, setLanguage] = useState('en')
 
   const collectionUrl = '/api/collection'
+  var isAndroid, isiOS
 
   useEffect(() => {
-    requestLanguage()
-    requestUserInfo()
+    var u = navigator.userAgent.toLocaleLowerCase();
+    isAndroid = u.indexOf("android") > -1 || u.indexOf("adr") > -1; //android终端
+    isiOS = !!u.match(/iphone|ipad|ipod/); //ios终端
+    console.log(isAndroid,isiOS)
+    // requestLanguage()
+    // requestUserInfo()
     if (id != undefined) {
       fetchCollectionInfo()
     }
@@ -76,7 +81,7 @@ function Main(props) {
           initCalendarInfo(info)
           requestLanguage()
           requestUserInfo()
-          checkIsInApp()
+          // checkIsInApp()
         }
       }
       getCollectionInfo()
@@ -245,21 +250,33 @@ function Main(props) {
   }
 
   function postMessage(params, callback) {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    if(isAndroid){
+      console.log('android')
       // @ts-ignore
-      if (window && window.flutter_inappwebview) {
-        console.log('send info android')
-        // @ts-ignore
-        window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
-        // @ts-ignore
-      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
-        console.log('send info ios')
-        // @ts-ignore, add ios callback
-        window.webkit.messageHandlers[handler].postMessage(params)
-      } else {
-        console.log(JSON.stringify(params))
-      }
+      window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
+    } else if(isiOS){
+      console.log('ios')
+      // @ts-ignore
+      window.webkit.messageHandlers[handler].postMessage(params)
+    } else {
+      console.log('not ios or android')
+      // console.log(JSON.stringify(params))
     }
+    // if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    //   // @ts-ignore
+    //   if (window && window.flutter_inappwebview) {
+    //     console.log('send info android')
+    //     // @ts-ignore
+    //     window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
+    //     // @ts-ignore
+    //   } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
+    //     console.log('send info ios')
+    //     // @ts-ignore, add ios callback
+    //     window.webkit.messageHandlers[handler].postMessage(params)
+    //   } else {
+    //     console.log(JSON.stringify(params))
+    //   }
+    // }
   }
 
   if (collectionInfo == null) {
