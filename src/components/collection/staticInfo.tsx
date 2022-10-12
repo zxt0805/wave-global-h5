@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 11:22:08
+ * @LastEditTime: 2022-10-12 11:45:02
  * @FilePath: /wave-chinese-website/src/components/collection/staticInfo.tsx
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-08 20:54:29
@@ -74,7 +74,7 @@ function StaticInfo(props) {
                 {props.collectionInfo.specifications.creator_earnings}
                 <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={e => showBubble(true, e)} />
                 {/* onClick={showBubble(true)} */}
-                {/* {isShowBubble && ( */}
+                {isShowBubble && (
                   <div className="bubble">
                     <img src="/assets/image/bubble.png" alt="" />
                     <p className="bubble-content">
@@ -85,7 +85,7 @@ function StaticInfo(props) {
                         t('BUBBLEAFTER')}
                     </p>
                   </div>
-                {/* )} */}
+                )}
               </div>
             </div>
           </div>
