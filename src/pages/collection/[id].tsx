@@ -2,7 +2,9 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 16:15:37
+ * @LastEditTime: 2022-10-12 16:17:14
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-11 15:05:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -27,11 +29,13 @@ import { IS_DEBUG } from 'constants/settings'
 export default Home
 
 function Home() {
-  let pageModel = new PageModel('COLLECTION', 'WAVE', '')
-  return <>{NormalLayout(Main(), pageModel)}</>
+  const [title, setTitle ] = useState("Collection")
+  let pageModel = new PageModel(title, 'WAVE', '')
+  return <>{NormalLayout(<Main setTitle={setTitle}/>, pageModel)}</>
 }
 
-function Main() {
+function Main(props) {
+  const {setTitle} = props
   const { t, i18n } = useTranslation()
   const isDebug = IS_DEBUG == 'true' ? true : false
   const router = useRouter()
@@ -67,6 +71,7 @@ function Main() {
         if (res.status == 200 && res.data.error_code == 1) {
           const info = res.data.result
           setCollectionInfo(info)
+          setTitle(info.name)
           initCalendarInfo(info)
           requestLanguage()
           requestUserInfo()
@@ -202,6 +207,7 @@ function Main() {
     postMessage(params, function (data) {
       if (data != null) {
         const info = JSON.parse(data.result)
+        setTitle(info.name)
         setCollectionInfo(info)
         initCalendarInfo(info)
       }
