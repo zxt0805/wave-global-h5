@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 20:25:32
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-12 21:29:30
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditTime: 2022-10-12 17:10:31
@@ -43,29 +43,25 @@ function Main(props) {
   const { id } = router.query
   const [isLogin, setIsLogin] = useState(false)
   const [isInApp, setIsInApp] = useState(false)
+  const [isAndroid, setIsAndroid] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
+
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
-  const [userInfo, setUserInfo] = useState({})
-  const [language, setLanguage] = useState('en')
 
   const collectionUrl = '/api/collection'
-  var isAndroid, isiOS
 
   useEffect(() => {
-    var u = navigator.userAgent.toLocaleLowerCase();
-    isAndroid = u.indexOf("android") > -1 || u.indexOf("adr") > -1; //android终端
-    isiOS = !!u.match(/iphone|ipad|ipod/); //ios终端
-    console.log(isAndroid,isiOS)
-    // requestLanguage()
-    // requestUserInfo()
+    const flag = checkIsInApp()
     if (id != undefined) {
-      fetchCollectionInfo()
+      fetchCollectionInfo(flag)
     }
   }, [id])
 
-  function fetchCollectionInfo() {
-    if (isLogin) {
+  function fetchCollectionInfo(flag) {
+    if (flag) {
+      requestLanguage()
       requestCollectionInfo(id)
     } else {
       //
@@ -79,9 +75,6 @@ function Main(props) {
           setCollectionInfo(info)
           setTitle(info.name)
           initCalendarInfo(info)
-          requestLanguage()
-          requestUserInfo()
-          // checkIsInApp()
         }
       }
       getCollectionInfo()
@@ -236,17 +229,15 @@ function Main(props) {
   }
 
   function checkIsInApp() {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      // @ts-ignore
-      if (window && (window.flutter_inappwebview || window.webkit)) {
-        setIsInApp(true)
-        // @ts-ignore
-      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
-        setIsInApp(true)
-      } else {
-        setIsInApp(false)
-      }
+    var u = navigator.userAgent.toLocaleLowerCase();
+    var flag = u.indexOf('wave') > -1
+    setIsInApp(flag);
+
+    if(flag) {
+      setIsAndroid(u.indexOf('android') > -1)
+      setIsIOS(u.indexOf('ios') > -1)
     }
+    return flag;
   }
 
   function postMessage(params, callback) {
@@ -254,29 +245,13 @@ function Main(props) {
       console.log('android')
       // @ts-ignore
       window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
-    } else if(isiOS){
+    } else if(isIOS){
       console.log('ios')
       // @ts-ignore
       window.webkit.messageHandlers[handler].postMessage(params)
     } else {
       console.log('not ios or android')
-      // console.log(JSON.stringify(params))
     }
-    // if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    //   // @ts-ignore
-    //   if (window && window.flutter_inappwebview) {
-    //     console.log('send info android')
-    //     // @ts-ignore
-    //     window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
-    //     // @ts-ignore
-    //   } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
-    //     console.log('send info ios')
-    //     // @ts-ignore, add ios callback
-    //     window.webkit.messageHandlers[handler].postMessage(params)
-    //   } else {
-    //     console.log(JSON.stringify(params))
-    //   }
-    // }
   }
 
   if (collectionInfo == null) {
