@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-12 18:28:11
+ * @LastEditTime: 2022-10-12 18:57:42
  * @LastEditors: weixuefeng weixuefeng@diynova.com
  * @LastEditTime: 2022-10-12 15:21:47
  * @LastEditTime: 2022-10-12 17:10:31
@@ -52,8 +52,7 @@ function Main(props) {
   const collectionUrl = '/api/collection'
 
   useEffect(() => {
-    requestLanguage()
-    requestUserInfo()
+    checkIsInApp()
     if (id != undefined) {
       fetchCollectionInfo()
     }
@@ -76,7 +75,6 @@ function Main(props) {
           initCalendarInfo(info)
           requestLanguage()
           requestUserInfo()
-          checkIsInApp()
         }
       }
       getCollectionInfo()
@@ -233,11 +231,11 @@ function Main(props) {
   function checkIsInApp() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       // @ts-ignore
-      if (window && window.flutter_inappwebview) {
+      if (window && (window.flutter_inappwebview || window.webkit)) {
         setIsInApp(true)
+        requestLanguage()
+        requestUserInfo()
         // @ts-ignore
-      } else if (window && window.webkit) {
-        setIsInApp(true)
       } else {
         setIsInApp(false)
       }
