@@ -1,8 +1,8 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-13 11:02:12
+ * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
+ * @LastEditTime: 2022-10-13 13:34:30
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,13 +25,13 @@ import { IS_DEBUG } from 'constants/settings'
 export default Home
 
 function Home() {
-  const [title, setTitle ] = useState("Collection")
+  const [title, setTitle] = useState('Collection')
   let pageModel = new PageModel(title, 'WAVE', '')
-  return <>{NormalLayout(<Main setTitle={setTitle}/>, pageModel)}</>
+  return <>{NormalLayout(<Main setTitle={setTitle} />, pageModel)}</>
 }
 
 function Main(props) {
-  const {setTitle} = props
+  const { setTitle } = props
   const { t, i18n } = useTranslation()
   const isDebug = IS_DEBUG == 'true' ? true : false
   const router = useRouter()
@@ -102,11 +102,11 @@ function Main(props) {
       data: calendarInfo,
     }
     postMessage(params, function (data) {
-      console.log("\r\n requestCalendar: " + JSON.stringify(data));
+      console.log('\r\n requestCalendar: ' + JSON.stringify(data))
       if (data != null && data.error_code == 1) {
-          setHasAddCalendar(true)
+        setHasAddCalendar(true)
       } else {
-          setHasAddCalendar(false)
+        setHasAddCalendar(false)
       }
     })
   }
@@ -224,23 +224,23 @@ function Main(props) {
   }
 
   function checkIsInApp() {
-    var u = navigator.userAgent.toLocaleLowerCase();
+    var u = navigator.userAgent.toLocaleLowerCase()
     var flag = u.indexOf('wave') > -1
-    setIsInApp(flag);
+    setIsInApp(flag)
 
-    if(flag) {
+    if (flag) {
       setIsAndroid(u.indexOf('android') > -1)
       setIsIOS(u.indexOf('ios') > -1)
     }
     // @ts-ignore
-    if(window && window.webkit && typeof handler !== 'undefined') {
+    if (window && window.webkit && typeof handler !== 'undefined') {
       setIsIOS(true)
     }
-    return flag;
+    return flag
   }
 
   function postMessage(params, callback) {
-    if(isAndroid){
+    if (isAndroid) {
       console.log('android')
       // @ts-ignore
       if (window && window.flutter_inappwebview) {
@@ -278,10 +278,10 @@ function Main(props) {
         <div className="staticinfo-wrap">
           <img className="rounded-xl" src={collectionInfo.banner} alt="" />
         </div>
-        <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
+        { collectionInfo.license_url && <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
           <span className="title">{t('LICENSE')}</span>
           <img src="/assets/image/icon-arrow.png" alt="" />
-        </a>
+        </a> }
         <FixBottom
           hasAddCalendar={hasAddCalendar}
           collectionInfo={collectionInfo}

@@ -97,8 +97,8 @@
     }
   }
   .license {
-    @apply flex items-center justify-between text-lg font-bold pb-28;
-    .title{
+    @apply flex items-center justify-between pb-28 text-lg font-bold;
+    .title {
       @apply mb-0;
     }
     img {
@@ -106,14 +106,14 @@
     }
   }
   .fixBottom {
-    transform: translateZ(0)!important;
+    transform: translateZ(0) !important;
     @apply fixed left-0 bottom-0 flex w-full items-center justify-between border-t-[1px] border-grayef  bg-white p-4 text-[1.375rem] font-bold text-greenDark;
     .end {
       @apply text-gray999;
     }
     .button {
       min-width: 10rem;
-      @apply rounded-lg bg-gray333 px-4 py-[0.65rem] text-lg text-white text-center;
+      @apply rounded-lg bg-gray333 px-4 py-[0.65rem] text-center text-lg text-white;
     }
 
     .button-disable {
@@ -123,4 +123,30 @@
   .more {
     @apply font-semibold text-gray333;
   }
+}
+
+.license-wrap{
+  .privacy-policy {
+    @apply px-4 text-sm font-normal md:px-0 md:pt-[100px] md:text-font22xl;
+    .privacy-data {
+      @apply text-center text-sm leading-[37px] text-gray999 md:text-left;
+    }
+    .title {
+      @apply text-[32px] leading-10 md:text-[2.63rem];
+    }
+    h2 {
+      @apply mb-8 pt-4 text-font22xl leading-9 md:text-2xl;
+    }
+    p {
+      @apply mb-6 text-base text-gray666 md:mb-11 md:leading-[30px];
+    }
+    a {
+      @apply hover:text-green2d;
+    }
+    .privacy-general {
+      @apply mt-6 md:mt-[3.8rem];
+    }
+  }
+  
+  
 }

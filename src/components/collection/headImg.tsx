@@ -48,7 +48,7 @@ function HeadImg(props) {
 
   function statusJudge() {
     if (collectionInfo.sell_status == 0) {
-      if(remainTime > 86400){
+      if (remainTime > 86400) {
         return <div className="status-onimg">{t('UPCOMMINGDROP')}</div>
       } else {
         return <div className="status-onimg">{t('COMINGSOON')}</div>

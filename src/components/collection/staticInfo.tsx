@@ -33,13 +33,13 @@ function StaticInfo(props) {
   }
   function showBubble(val, event) {
     event = event || window.event
-    if(val){
+    if (val) {
       event.stopPropagation()
     }
     setIsShowBubble(val)
   }
   return (
-    <div className="staticinfo-wrap"  onClick={e => showBubble(false, e)}>
+    <div className="staticinfo-wrap" onClick={e => showBubble(false, e)}>
       <p className="title introduction">{t('INTRODUCTION')}</p>
       <div className="content-wrap">
         <p className={showAllIntro ? '' : 'h-[3rem] text-gray666 line-clamp-2'}>{props.collectionInfo.description}</p>
@@ -72,7 +72,12 @@ function StaticInfo(props) {
               <p className="item">{props.collectionInfo.specifications.block_chain}</p>
               <div className="item">
                 {props.collectionInfo.specifications.creator_earnings}
-                <img src="/assets/image/icon-ques.png" alt="" className="icon-ques" onClick={e => showBubble(true, e)} />
+                <img
+                  src="/assets/image/icon-ques.png"
+                  alt=""
+                  className="icon-ques"
+                  onClick={e => showBubble(true, e)}
+                />
                 {/* onClick={showBubble(true)} */}
                 {isShowBubble && (
                   <div className="bubble">
