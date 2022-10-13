@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-11 15:05:49
+ * @LastEditTime: 2022-10-13 10:34:21
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,24 +38,25 @@ function Main(props) {
   const { id } = router.query
   const [isLogin, setIsLogin] = useState(false)
   const [isInApp, setIsInApp] = useState(false)
+  const [isAndroid, setIsAndroid] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
+
   const [collectionInfo, setCollectionInfo] = useState<CollectionInfo>()
   const [calendarInfo, setCalendarInfo] = useState({})
   const [hasAddCalendar, setHasAddCalendar] = useState(false)
-  const [userInfo, setUserInfo] = useState({})
-  const [language, setLanguage] = useState('en')
 
   const collectionUrl = '/api/collection'
 
   useEffect(() => {
-    requestLanguage()
-    requestUserInfo()
+    const flag = checkIsInApp()
     if (id != undefined) {
-      fetchCollectionInfo()
+      fetchCollectionInfo(flag)
     }
   }, [id])
 
-  function fetchCollectionInfo() {
-    if (isLogin) {
+  function fetchCollectionInfo(flag) {
+    if (flag) {
+      requestLanguage()
       requestCollectionInfo(id)
     } else {
       //
@@ -69,9 +70,6 @@ function Main(props) {
           setCollectionInfo(info)
           setTitle(info.name)
           initCalendarInfo(info)
-          requestLanguage()
-          requestUserInfo()
-          checkIsInApp()
         }
       }
       getCollectionInfo()
@@ -226,28 +224,27 @@ function Main(props) {
   }
 
   function checkIsInApp() {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      // @ts-ignore
-      if (window && window.flutter_inappwebview) {
-        setIsInApp(true)
-        // @ts-ignore
-      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
-        setIsInApp(true)
-      } else {
-        setIsInApp(false)
-      }
+    var u = navigator.userAgent.toLocaleLowerCase();
+    var flag = u.indexOf('wave') > -1
+    setIsInApp(flag);
+
+    if(flag) {
+      setIsAndroid(u.indexOf('android') > -1)
+      setIsIOS(u.indexOf('ios') > -1)
     }
+    return flag;
   }
 
   function postMessage(params, callback) {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    if(isAndroid){
+      console.log('android')
       // @ts-ignore
       if (window && window.flutter_inappwebview) {
         console.log('send info android')
         // @ts-ignore
         window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
         // @ts-ignore
-      } else if (window && window.webkit && handler && window.webkit.messageHandlers[handler]) {
+      } else if (window && window.webkit && typeof handler !== 'undefined' && isIOS) {
         console.log('send info ios')
         // @ts-ignore, add ios callback
         window.webkit.messageHandlers[handler].postMessage(params)
