@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-13 16:23:40
+ * @LastEditTime: 2022-10-13 21:35:03
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 14:53:40
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
@@ -278,13 +278,14 @@ function Main(props) {
         <HeadImg collectionInfo={collectionInfo}></HeadImg>
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
-        <div className="staticinfo-wrap">
+        {collectionInfo.picture_description && <div className="staticinfo-wrap">
           <img className="rounded-xl w-full" src={collectionInfo.picture_description} alt="" />
-        </div>
+        </div>}
         { collectionInfo.license_url && <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
           <span className="title">{t('LICENSE')}</span>
           <img src="/assets/image/icon-arrow.png" alt="" />
         </a> }
+        <div className="pb-24"></div>
         <FixBottom
           hasAddCalendar={hasAddCalendar}
           collectionInfo={collectionInfo}
