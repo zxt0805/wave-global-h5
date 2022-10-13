@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-13 13:41:36
+ * @LastEditTime: 2022-10-13 16:21:04
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 13:16:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -275,7 +275,7 @@ function Main(props) {
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         <div className="staticinfo-wrap">
-          <img className="rounded-xl" src={collectionInfo.banner} alt="" />
+          <img className="rounded-xl w-full" src={collectionInfo.picture_description} alt="" />
         </div>
         { collectionInfo.license_url && <a className="staticinfo-wrap license" href={collectionInfo.license_url}>
           <span className="title">{t('LICENSE')}</span>
