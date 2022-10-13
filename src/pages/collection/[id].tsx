@@ -2,7 +2,9 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-13 16:21:04
+ * @LastEditTime: 2022-10-13 16:23:40
+ * @LastEditors: weixuefeng weixuefeng1018@gmail.com
+ * @LastEditTime: 2022-10-13 14:53:40
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 13:16:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
@@ -52,7 +54,9 @@ function Main(props) {
   useEffect(() => {
     const flag = checkIsInApp()
     if (id != undefined) {
-      fetchCollectionInfo(flag)
+      setTimeout(() => {
+        fetchCollectionInfo(flag)
+      }, 500)
     }
   }, [id])
 
