@@ -97,7 +97,10 @@
     }
   }
   .license {
-    @apply flex items-center justify-between text-lg font-bold pb-28;;
+    @apply flex items-center justify-between text-lg font-bold pb-28;
+    .title{
+      @apply mb-0;
+    }
     img {
       @apply h-[1.0625rem] w-[1.0625rem];
     }
