@@ -2,7 +2,9 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-13 13:34:30
+ * @LastEditTime: 2022-10-13 13:41:36
+ * @LastEditors: weixuefeng weixuefeng1018@gmail.com
+ * @LastEditTime: 2022-10-13 13:16:49
  * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -55,7 +57,7 @@ function Main(props) {
   }, [id])
 
   function fetchCollectionInfo(flag) {
-    if (false) {
+    if (flag) {
       requestLanguage()
       requestCollectionInfo(id)
     } else {
@@ -240,21 +242,18 @@ function Main(props) {
   }
 
   function postMessage(params, callback) {
-    if (isAndroid) {
-      console.log('android')
+    // @ts-ignore
+    if (window && window.flutter_inappwebview) {
+      console.log('send info android')
       // @ts-ignore
-      if (window && window.flutter_inappwebview) {
-        console.log('send info android')
-        // @ts-ignore
-        window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
-        // @ts-ignore
-      } else if (window && window.webkit && typeof handler !== 'undefined' && isIOS) {
-        console.log('send info ios')
-        // @ts-ignore, add ios callback
-        window.webkit.messageHandlers[handler].postMessage(params)
-      } else {
-        console.log(JSON.stringify(params))
-      }
+      window.flutter_inappwebview.callHandler(JSON.stringify(params), callback)
+      // @ts-ignore
+    } else if (window && window.webkit && typeof handler !== 'undefined' && isIOS) {
+      console.log('send info ios')
+      // @ts-ignore, add ios callback
+      window.webkit.messageHandlers[handler].postMessage(params)
+    } else {
+      console.log(JSON.stringify(params))
     }
   }
 
