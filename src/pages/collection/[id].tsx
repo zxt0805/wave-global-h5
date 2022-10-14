@@ -1,13 +1,13 @@
 /*
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-13 21:35:03
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-14 15:10:42
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 14:53:40
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 13:16:49
- * @FilePath: /wave-chinese-website/src/pages/collection/[id].tsx
+ * @FilePath: /wave-global-h5/src/pages/collection/[id].tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import HeadImg from 'components/collection/headImg'
@@ -275,7 +275,7 @@ function Main(props) {
           <img alt="logo" src="/assets/image/logo.png" />
         </div>
         {/* {t("title")} */}
-        <HeadImg collectionInfo={collectionInfo}></HeadImg>
+        <HeadImg collectionInfo={collectionInfo}/>
         <BaseInfo collectionInfo={collectionInfo} />
         <StaticInfo collectionInfo={collectionInfo}></StaticInfo>
         {collectionInfo.picture_description && <div className="staticinfo-wrap">
