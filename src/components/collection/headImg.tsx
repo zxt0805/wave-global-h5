@@ -1,9 +1,9 @@
 /*
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
- * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-14 13:45:36
- * @FilePath: /wave-chinese-website/src/components/collection/headImg.tsx
+ * @LastEditors: weixuefeng weixuefeng@diynova.com
+ * @LastEditTime: 2022-10-14 15:26:54
+ * @FilePath: /wave-global-h5/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react'
@@ -17,24 +17,24 @@ function HeadImg(props) {
   let { collectionInfo } = props
 
   const [remainSecond, setRemainSecond] = useState(0)
-  let timer, remainTime
+  let timer
 
   useEffect(() => {
-    remainTime = collectionInfo.sell_start_time - collectionInfo.system_time
-    console.log(remainTime)
-    setRemainSecond(remainTime)
-    if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
-      if (timer) {
-        clearInterval(timer)
+    if(collectionInfo) {
+      const remainTime = parseInt(collectionInfo.sell_start_time) - parseInt((new Date().getTime() / 1000).toString() )
+      setRemainSecond(remainTime)
+      if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
+        if (timer) {
+          clearInterval(timer)
+        }
+        countDown()
       }
-      countDown()
     }
   }, [])
 
   function countDown() {
     timer = setInterval(() => {
-      remainTime = remainTime - 1
-      setRemainSecond(remainTime)
+      setRemainSecond(remainSecond - 1)
     }, 1000)
   }
 
