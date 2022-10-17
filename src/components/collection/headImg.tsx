@@ -2,7 +2,7 @@
  * @Author: zhuxiaotong zhuxiaotong@diynova.com
  * @Date: 2022-09-29 15:46:19
  * @LastEditors: weixuefeng weixuefeng@diynova.com
- * @LastEditTime: 2022-10-14 15:26:54
+ * @LastEditTime: 2022-10-14 15:48:20
  * @FilePath: /wave-global-h5/src/components/collection/headImg.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,7 +21,7 @@ function HeadImg(props) {
 
   useEffect(() => {
     if(collectionInfo) {
-      const remainTime = parseInt(collectionInfo.sell_start_time) - parseInt((new Date().getTime() / 1000).toString() )
+      const remainTime = parseInt(collectionInfo.sell_start_time) - parseInt(collectionInfo.system_time)
       setRemainSecond(remainTime)
       if (collectionInfo.sell_status == 0 && remainTime <= 86400) {
         if (timer) {
