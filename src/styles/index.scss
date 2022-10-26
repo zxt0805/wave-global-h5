@@ -15,10 +15,10 @@
   .baseinfo-wrap {
     @apply mt-5 rounded-xl bg-white px-4  pb-5;
     .title {
-      @apply relative text-[1.625rem] font-bold leading-6;
+      @apply relative text-[1.625rem] font-bold;
       font-family: 'Avenir Next' !important;
       .icon {
-        @apply absolute top-0 ml-2 h-[1.125rem] w-[2.175rem] scale-[0.83] rounded-sm bg-greenMain text-center text-xs leading-[1.2rem] text-white;
+        @apply absolute ml-2 h-[1.125rem] w-[2.175rem] scale-[0.83] rounded-sm bg-greenMain text-center text-xs leading-[1.2rem] text-white;
       }
     }
     .nums {
