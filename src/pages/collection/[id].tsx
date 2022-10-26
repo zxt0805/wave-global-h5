@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-26 15:19:49
+ * @LastEditTime: 2022-10-26 15:42:44
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 14:53:40
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
@@ -30,7 +30,7 @@ export default Home
 
 function Home() {
   const [title, setTitle] = useState('Collection')
-  let pageModel = new PageModel(title, 'Collection-desc', 'detail')
+  let pageModel = new PageModel(title, 'WAVE', 'detail')
   return <>{NormalLayout(<Main setTitle={setTitle} />, pageModel)}</>
 }
 
@@ -75,6 +75,7 @@ function Main(props) {
           const info = res.data.result
           setCollectionInfo(info)
           setTitle(info.name)
+          console.log(info.name)
           initCalendarInfo(info)
         }
       }
