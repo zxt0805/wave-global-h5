@@ -2,7 +2,7 @@
  * @Author: liukeke liukeke@diynova.com
  * @Date: 2022-09-21 10:43:33
  * @LastEditors: zhuxiaotong zhuxiaotong@diynova.com
- * @LastEditTime: 2022-10-26 15:50:27
+ * @LastEditTime: 2022-10-26 17:23:39
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
  * @LastEditTime: 2022-10-13 14:53:40
  * @LastEditors: weixuefeng weixuefeng1018@gmail.com
@@ -30,12 +30,14 @@ export default Home
 
 function Home() {
   const [title, setTitle] = useState('Collection')
-  let pageModel = new PageModel(title, 'collection-desc', 'detail', 'https://app.waveuniverse.org/assets/image/logo-wave.png')
-  return <>{NormalLayout(<Main setTitle={setTitle} />, pageModel)}</>
+  const [desc, setDesc] = useState('Collection')
+  const [image, setImage] = useState('https://app.waveuniverse.org/assets/image/banner-h5-new.png')
+  let pageModel = new PageModel(title, desc, '', image)
+  return <>{NormalLayout(<Main setTitle={setTitle} setDesc={setDesc} setImage={setImage} />, pageModel)}</>
 }
 
 function Main(props) {
-  const { setTitle } = props
+  const { setTitle, setDesc, setImage } = props
   const { t, i18n } = useTranslation()
   const isDebug = IS_DEBUG == 'true' ? true : false
   const router = useRouter()
@@ -209,6 +211,8 @@ function Main(props) {
       if (data != null) {
         const info = JSON.parse(data.result)
         setTitle(info.name)
+        setDesc(info.name)
+        setImage(info.name)
         setCollectionInfo(info)
         initCalendarInfo(info)
       }
