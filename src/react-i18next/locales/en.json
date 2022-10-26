@@ -8,7 +8,7 @@
   "STARTSAT": "Starts at",
   "STARTSIN": "Starts in",
   "REMAINING": "Remaining",
-  "TOTALSUPPLY": "Current Release",
+  "TOTALSUPPLY": "Total Supply",
   "INTRODUCTION": "Introduction",
   "MORE": "More",
   "COLLAPSE": "Collapse",
@@ -29,5 +29,6 @@
   "COPYSUCCESS": "Copied",
   "DOWNLOAD": "Download",
   "WAVE_PLATFORM_EVT": "Wave Platform EVT",
-  "COMMINIG_SOON": "will be available for sale soon, grab it now!"
+  "COMMINIG_SOON": "will be available for sale soon, grab it now!",
+  "CURRENT_RELEASE": "Current Release"
 }
